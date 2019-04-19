@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
     before_action :current_user, only: [:show, :edit]
     before_action :check_login
+    authorize_resource
 
     def new
         @user = User.new
