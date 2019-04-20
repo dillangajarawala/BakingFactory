@@ -4,6 +4,7 @@ class OrdersController < ApplicationController
   
   def index
     @all_orders = Order.chronological.paginate(:page => params[:page]).per_page(10)
+    @customer_orders = Order.chronological.for_customer(current_user.customer.id).paginate(:page => params[:page]).per_page(10)
   end
 
   def show

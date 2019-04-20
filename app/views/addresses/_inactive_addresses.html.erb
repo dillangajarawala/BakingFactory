@@ -1,1 +1,5 @@
-<%= render partial: "address_list", locals: {addresses: @inactive_addresses, state: 'inactive'} %>
+<% if logged_in? && current_user.role?(:admin) %>
+    <%= render partial: "address_list", locals: {addresses: @inactive_addresses, state: 'inactive'} %>
+<% elsif logged_in? && current_user.role?(:customer) %>
+    <%= render partial: "address_list", locals: {addresses: @inactive_customer_addresses, state: 'inactive'} %>
+<% end %>

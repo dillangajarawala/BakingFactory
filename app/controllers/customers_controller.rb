@@ -14,11 +14,14 @@ class CustomersController < ApplicationController
 
   def new
     @customer = Customer.new
+      user = @customer.build_user
   end
 
   def edit
     # reformat phone w/ dashes when displayed for editing (preference; not required)
     @customer.phone = number_to_phone(@customer.phone)
+    # should have a user associated with customer, but just in case...
+        user = (@customer.user.nil? ? @customer.build_user : @customer.user)
   end
 
   def create
