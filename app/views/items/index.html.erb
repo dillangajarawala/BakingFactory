@@ -1,0 +1,39 @@
+<%= render partial: "partials/item_list", locals: {items: @breads,
+                                                    item_type: 'breads'} %><br/>
+
+<%= render partial: "partials/item_list", locals: {items: @muffins,
+                                                    item_type: 'muffins'} %><br/>
+
+<%= render partial: "partials/item_list", locals: {items: @pastries,
+                                                    item_type: 'pastries'} %><br/>
+
+<% if logged_in? && current_user.role?(:admin) %>
+  <% unless @inactive_items.nil? || @inactive_items.empty? %>
+  <h5>Inactive Items</h5>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th width="300">Name</th>
+        <th width="100">Price</th>
+        <th width="100">Units</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @inactive_items.each do |item| %>
+        <tr>
+          <td><%= link_to item.name, item_path(item) %></td>
+          <td><%= number_to_currency item.current_price %></td>
+          <td><%= item.units_per_item %> <%= item.category == 'bread' ? 'loaf' : item.category %>s</td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <% end %>
+  <% if @inactive_items.nil? || @inactive_items.empty? %>
+  <i>There are no inactive items at this time.</i><br><br>
+  <% end %>
+<% end %>
+
+<% if can? :create, Item %>
+  <%= link_to 'Add a New Item', new_item_path, class: "button radius" %>
+<% end %>

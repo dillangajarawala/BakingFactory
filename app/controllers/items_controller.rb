@@ -18,7 +18,7 @@
       @previous_prices = @item.item_prices.chronological.to_a
     end
     # everyone sees similar items in the sidebar
-    @similar_items = Item.for_category(@item.category).alphabetical.to_a
+    @similar_items = Item.active.for_category(@item.category).alphabetical.to_a
   end
 
   def new
@@ -47,7 +47,11 @@
 
   def destroy
     @item.destroy
-    redirect_to items_url, notice: "#{@item.name} was removed from the system."
+    if !@item.nil? && !@item.active?
+      redirect_to items_url, notice: "#{@item.name} was made inactive, because it cannot be deleted."
+    else
+      redirect_to items_url, notice: "#{@item.name} was removed from the system."
+    end
   end
 
   private

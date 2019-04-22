@@ -1,6 +1,6 @@
 class CustomersController < ApplicationController
   include ActionView::Helpers::NumberHelper
-  before_action :set_customer, only: [:show, :edit, :update, :destroy]
+  before_action :set_customer, only: [:show, :edit, :update, :destroy, :update_status]
   authorize_resource
   
   def index
@@ -41,6 +41,10 @@ class CustomersController < ApplicationController
     end
   end
 
+  def update_status
+    @customer.make_inactive
+    redirect_to @customer
+  end
 
   private
   def set_customer

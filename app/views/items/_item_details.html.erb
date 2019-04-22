@@ -1,0 +1,23 @@
+<h3><%= @item.name %></h3>
+
+<p>
+  <b>Description</b>:<br> <%= @item.description %>
+</p>
+
+<p>
+  <b>Category</b>:<br> <%= @item.category.titleize %>
+</p>
+
+<p>
+  <b>Units per Item</b>:<br> <%= @item.units_per_item %>
+</p>
+
+<p>
+  <b>Weight</b>:<br> <%= @item.weight %> lbs
+</p>
+
+<% if logged_in? && current_user.role?(:admin) %>
+    <p>
+    <b>Active</b>:<br> <%= @item.active ? 'Yes' : 'No' %>
+    </p>
+<% end %>
