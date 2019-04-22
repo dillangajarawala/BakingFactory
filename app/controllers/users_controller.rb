@@ -1,7 +1,12 @@
 class UsersController < ApplicationController
     before_action :current_user, only: [:show, :edit]
+    before_action :set_user, only: [:show, :edit]
     before_action :check_login
     authorize_resource
+
+    def index
+      @non_customer_users = User.all.employees.paginate(:page => params[:page]).per_page(10)
+    end
 
     def new
         @user = User.new
@@ -31,6 +36,11 @@ class UsersController < ApplicationController
       end
 
     private
+
+    def set_user
+      @user = User.find(params[:id])
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
       params.require(:user).permit(:username, :role, :password, :password_confirmation)

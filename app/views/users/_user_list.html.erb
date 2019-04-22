@@ -1,0 +1,30 @@
+<% if @non_customer_users.empty? %>
+  <h4>No users at this time.</h4>
+<% else %>
+  <h4>Employees</h4>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th width="225">Username</th>
+        <th width="125">Role</th>
+        <th width="200">Active</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @non_customer_users.each do |user| %>
+        <tr>
+          <td><%= user.username %></td>
+          <td><%= user.role.capitalize %></td>
+          <td><%= (user.active || user.active.nil?) ? 'Yes' : 'No'  %></td>
+          <td>
+          <%= link_to(edit_user_path(user), class: 'button tiny radius warning') do %>
+            &nbsp;Edit&nbsp;
+          <% end %>
+        </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<%= will_paginate @non_customer_users, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>  
+<% end %>
+<p>&nbsp;</p>

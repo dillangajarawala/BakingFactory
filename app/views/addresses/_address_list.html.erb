@@ -5,7 +5,9 @@
 <table class="table table-striped">
   <thead>
     <tr>
+      <% if logged_in? && current_user.role?(:admin) %>
       <th width="225">Customer</th>
+      <% end %>
       <th width="225">Recipient</th>
       <th width="350">Address</th>
       <th width="75">Billing?</th>
@@ -15,7 +17,9 @@
   <tbody>
     <% addresses.each do |address| %>
       <tr>
+        <% if logged_in? && current_user.role?(:admin) %>
         <td><%= link_to address.customer.proper_name, customer_path(address.customer) %></td>
+        <% end %>
         <td><%= address.recipient %></td>
         <td>
           <%= render :partial => "partials/address_info", locals: {address: address} %>
