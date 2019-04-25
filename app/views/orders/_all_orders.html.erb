@@ -1,4 +1,4 @@
-<% if @all_orders.empty? || @customer_orders.empty? %>
+<% if @all_orders.empty? && @customer_orders.empty? %>
   <p><em>There are no orders at this time.</em></p>
 <% else %>
   <% if logged_in? && current_user.role?(:admin) %>

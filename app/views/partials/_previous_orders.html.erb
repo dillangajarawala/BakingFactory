@@ -1,4 +1,4 @@
-<% unless previous_orders.empty? %>
+<% unless @previous_orders.empty? %>
   <div class="panel clearfix">
     <h3>Order History</h3>
     <table>
@@ -9,7 +9,7 @@
         </tr>
       </thead>
       <tbody>
-      <% previous_orders.each do |order| %>
+      <% @previous_orders.each do |order| %>
         <tr>
           <td><%= link_to order.date.strftime('%m/%d/%y'), order_path(order) %></td>
           <td><%= number_to_currency order.grand_total %></td>

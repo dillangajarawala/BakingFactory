@@ -1,10 +1,4 @@
-<div class="row">
-  <div class="small-7 columns">
-    <%= render :partial => "order_details" %>
-  </div>
-  <div class="small-5 columns">
-    <%= render partial: "partials/previous_orders", locals: {previous_orders: @previous_orders}  unless @previous_orders.empty?%>
-  </div>
-</div>
+<%= render partial: "partials/structure1", locals: {primary: "order_details", 
+                                                    secondary: nil, sidebar: "partials/previous_orders"}%>
 
 <%= render partial: "partials/object_options", locals: {model_name: "order", object: @order}  %>
