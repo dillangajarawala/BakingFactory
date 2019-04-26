@@ -21,6 +21,15 @@
             &nbsp;Edit&nbsp;
           <% end %>
         </td>
+        <td>
+          <% if logged_in? && current_user.role?(:admin) %> 
+            <% if user.active? || user.active.nil? %>
+              <%= link_to "Deactivate", user_deactivate_path(user), class: 'button tiny radius warning' %>
+            <% else %> 
+              <%= link_to "Activate", user_activate_path(user), class: 'button tiny radius warning' %>
+            <% end %>
+          <% end %>
+        </td>
         </tr>
       <% end %>
     </tbody>

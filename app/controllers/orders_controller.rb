@@ -36,6 +36,7 @@ class OrdersController < ApplicationController
     if @order.save
       clear_cart
       @order.pay
+      save_each_item_in_cart(@order)
       redirect_to @order, notice: "Thank you for ordering from the Baking Factory."
     else
       render action: 'new'

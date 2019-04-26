@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
     before_action :current_user, only: [:show, :edit]
-    before_action :set_user, only: [:show, :edit]
+    before_action :set_user, only: [:show, :edit, :deactivate, :activate]
     before_action :check_login
     authorize_resource
 
@@ -27,13 +27,23 @@ class UsersController < ApplicationController
     
       # PATCH/PUT /genres/1
       # PATCH/PUT /genres/1.json
-      def update
-        if @user.update_attributes(user_params)
-          redirect_to(@user, :notice => 'User was successfully updated.')
-        else
-          render :action => "edit"
-        end
+    def update
+      if @user.update_attributes(user_params)
+        redirect_to(@user, :notice => 'User was successfully updated.')
+      else
+        render :action => "edit"
       end
+    end
+
+    def activate
+      @user.make_active
+      redirect_to users_url, notice: "#{@user.username} was activated"
+    end
+    
+    def deactivate
+      @user.make_inactive
+      redirect_to users_url, notice: "#{@user.username} was deactivated"
+    end
 
     private
 

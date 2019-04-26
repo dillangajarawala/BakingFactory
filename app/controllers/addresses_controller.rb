@@ -21,6 +21,7 @@ class AddressesController < ApplicationController
 
   def create
     @address = Address.new(address_params)
+    @address.customer_id = current_user.customer.id
     
     if @address.save
       redirect_to customer_path(@address.customer), notice: "The address was added to #{@address.customer.proper_name}."

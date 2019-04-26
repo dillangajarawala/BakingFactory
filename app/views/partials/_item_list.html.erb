@@ -7,6 +7,7 @@
         <th width="100">Price</th>
         <th width="100">Units</th>
         <th width="100">&nbsp;</th>
+        <th width="100">&nbsp;</th>
       </tr>
     </thead>
     <tbody>
@@ -16,10 +17,21 @@
           <td><%= number_to_currency item.current_price %></td>
           <td><%= item.units_per_item %> <%= item.category == 'bread' ? 'loaf' : item.category %></td>
             <td>
+            <% if can? :add_to_cart, Item %>
               <%= link_to(add_to_cart_path(item), class: 'button tiny radius') do %>
                 &nbsp;Add to Cart&nbsp;
               <% end %>
+            <% end %>
             </td>
+            <td>
+          <% if logged_in? && current_user.role?(:admin) %> 
+            <% if item.active? || item.active.nil? %>
+              <%= link_to "Deactivate", item_deactivate_path(item), class: 'button tiny radius warning' %>
+            <% else %> 
+              <%= link_to "Activate", item_activate_path(item), class: 'button tiny radius warning' %>
+            <% end %>
+          <% end %>
+        </td>
         </tr>
       <% end %>
     </tbody>
