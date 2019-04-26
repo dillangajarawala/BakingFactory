@@ -1,6 +1,7 @@
-<%= f.input :name, label_html: {class: "active"}%>
+<%= f.input :name, as: :string, label_html: {class: "active"}%>
 <%= f.input :description, label_html: {class: "active"}%>
-<%= f.input :category, label_html: {class: "active"}%>
+<%= f.input :category, collection: Item::CATEGORIES, include_blank: true, label_html: {class: "active"}%>
 <%= f.input :units_per_item, as: :integer, label_html: {class: "active"}%>
 <%= f.input :weight, as: :float, label_html: {class: "active"}%>
+<%= f.file_field :picture, label_html: {class: "active"} %>
 <%= f.input :active %>

@@ -38,6 +38,15 @@ class AddressesController < ApplicationController
     end
   end
 
+  def destroy
+    @address.destroy
+    if !@address.nil? && !@address.active?
+      redirect_to addresses_url, notice: "The address was made inactive, because it cannot be deleted."
+    else
+      redirect_to addresses_url, notice: "The address was removed from the system."
+    end
+  end
+
   def activate
     @address.make_active
     redirect_to @address, notice: "The address was activated"

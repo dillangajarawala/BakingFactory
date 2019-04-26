@@ -20,7 +20,7 @@
       @previous_prices = @item.item_prices.chronological.to_a
     end
     # everyone sees similar items in the sidebar
-    @similar_items = Item.active.for_category(@item.category).alphabetical.to_a
+    @similar_items = Item.active.for_category(@item.category).alphabetical.to_a - [@item]
   end
 
   def new

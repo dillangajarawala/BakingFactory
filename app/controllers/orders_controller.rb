@@ -15,7 +15,7 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @previous_orders = @order.customer.orders.chronological.to_a
+    @previous_orders = @order.customer.orders.chronological.to_a - [@order]
   end
 
   def new
