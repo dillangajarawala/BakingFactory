@@ -1,3 +1,6 @@
     <%= f.input :customer_id, collection: Customer.active.alphabetical, include_blank: true, label_html: {class: "active"} %>
     <%= f.input :address_id, collection: get_address_options, include_blank: true, label_html: {class: "active"} %>
     <%= f.input :grand_total, as: :string, label_html: {class: "active"} %>
+    <%= f.input :credit_card_number, as: :string, label_html: {class: "active"} %>
+    <%= f.input :expiration_month, as: :string, label_html: {class: "active"} %>
+    <%= f.input :expiration_year, as: :string, label_html: {class: "active"} %>

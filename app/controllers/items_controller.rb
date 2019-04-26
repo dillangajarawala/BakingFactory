@@ -1,6 +1,8 @@
   class ItemsController < ApplicationController
+    include AppHelpers::Cart
+
   before_action :check_login, except: [:index, :show]
-  before_action :set_item, only: [:show, :edit, :update, :destroy]
+  before_action :set_item, except: [:index, :new, :create]
   authorize_resource
   
   def index
@@ -52,6 +54,26 @@
     else
       redirect_to items_url, notice: "#{@item.name} was removed from the system."
     end
+  end
+
+  def add_to_cart
+    add_item_to_cart(@item.id.to_s)
+    redirect_to items_url, notice: "#{@item.name} has been added to your cart"
+  end
+
+  def remove_from_cart
+    remove_item_from_cart(@item.id.to_s)
+    redirect_to cart_path, notice: "#{@item.name} has been removed from your cart"
+  end
+
+  def activate
+    @item.make_active
+    redirect_to @item, notice: "#{@item.name} was activated"
+  end
+
+  def deactivate
+    @item.make_inactive
+    redirect_to @item, notice: "#{@item.name} was deactivated"
   end
 
   private

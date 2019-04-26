@@ -35,5 +35,5 @@
 <% end %>
 
 <% if can? :create, Item %>
-  <%= link_to 'Add a New Item', new_item_path, class: "button radius" %>
+  <%= render partial: "partials/add_new_object", locals: {model_name: 'item'} %>
 <% end %>

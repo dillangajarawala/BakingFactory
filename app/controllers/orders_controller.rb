@@ -1,10 +1,15 @@
 class OrdersController < ApplicationController
+  include AppHelpers::Cart
+
   before_action :set_order, only: [:show, :destroy]
   authorize_resource
   
   def index
-    @all_orders = Order.chronological.paginate(:page => params[:page]).per_page(10)
-    @customer_orders = Order.chronological.for_customer(current_user.customer.id).paginate(:page => params[:page]).per_page(10)
+    if current_user.role?(:admin)
+      @all_orders = Order.chronological.paginate(:page => params[:page]).per_page(10)
+    elsif current_user.role?(:customer)
+      @all_orders = Order.chronological.for_customer(current_user.customer.id).paginate(:page => params[:page]).per_page(10)
+    end
   end
 
   def show
@@ -18,6 +23,10 @@ class OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.date = Date.current
+    @order.customer_id = current_user.customer.id
+    @order.credit_card_number = order.credit_card_number
+    @order.expiration_year = order.expiration_year
+    @order.expiration_month = order.expiration_month
     if @order.save
       @order.pay
       redirect_to @order, notice: "Thank you for ordering from the Baking Factory."
@@ -25,7 +34,6 @@ class OrdersController < ApplicationController
       render action: 'new'
     end
   end
-  
 
   private
   def set_order
@@ -33,7 +41,11 @@ class OrdersController < ApplicationController
   end
 
   def order_params
-    params.require(:order).permit(:address_id, :customer_id, :grand_total)
+    if logged_in? && current_user.role?(:admin)
+      params.require(:order).permit(:address_id, :customer_id, :grand_total, :credit_card_number, :expiration_year, :expiration_month)
+    elsif logged_in? && current_user.role?(:customer)
+      params.require(:order).permit(:address_id, :credit_card_number, :expiration_year, :expiration_month)
+    end
   end
 
 end

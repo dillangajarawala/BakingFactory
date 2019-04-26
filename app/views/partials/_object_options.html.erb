@@ -15,12 +15,20 @@
   <% end %>
   &nbsp;&nbsp;
 
-  <%# <% if controller.respond_to?(:deactivate_customer) %> 
-    <%# <% if can? :destroy, eval("#{model_name.titleize}") %> 
-      <%# <%= link_to(update_status_url(object), class: 'waves-effect waves-light btn btn-alert') do %> 
-          <%# &nbsp;<%= "Deactivate #{opt}" %> 
-      <%# <% end %> 
-  <%# <% end %> 
+  <% if controller.respond_to?(:deactivate) || controller.respond_to?(:activate) %>
+     <% if logged_in? && current_user.role?(:admin) %> 
+        <% if object.active? %>
+          <%= link_to(eval("#{model_name}_deactivate_path(object)"), class: 'waves-effect waves-light btn') do %>
+          &nbsp;<%= "Deactivate #{opt}" %>
+          <% end %>
+        <% else %> 
+          <%= link_to(eval("#{model_name}_activate_path(object)"), class: 'waves-effect waves-light btn') do %>
+          &nbsp;<%= "Activate #{opt}" %>
+          <% end %>
+        <% end %>
+      <% end %>
+  <% end %> 
+  &nbsp;&nbsp;
   
   <% if controller.respond_to?(:destroy) %>
     <% if can? :destroy, eval("#{model_name.titleize}")%>

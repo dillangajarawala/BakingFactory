@@ -6,9 +6,7 @@
         <th width="300">Name</th>
         <th width="100">Price</th>
         <th width="100">Units</th>
-        <% if controller.controller_name == 'orders' %>
-          <th width="100">&nbsp;</th>
-        <% end %>
+        <th width="100">&nbsp;</th>
       </tr>
     </thead>
     <tbody>
@@ -16,14 +14,12 @@
         <tr>
           <td><%= link_to item.name, item_path(item) %></td>
           <td><%= number_to_currency item.current_price %></td>
-          <td><%= item.units_per_item %> <%= item_type == 'bread' ? 'loaf' : item_type %></td>
-          <% if controller.controller_name == 'orders' %>
+          <td><%= item.units_per_item %> <%= item.category == 'bread' ? 'loaf' : item.category %></td>
             <td>
-              <%= link_to(add_to_cart_path(item.id), class: 'button tiny radius') do %>
+              <%= link_to(add_to_cart_path(item), class: 'button tiny radius') do %>
                 &nbsp;Add to Cart&nbsp;
               <% end %>
             </td>
-          <% end %>
         </tr>
       <% end %>
     </tbody>

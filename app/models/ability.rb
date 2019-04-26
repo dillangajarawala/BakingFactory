@@ -29,9 +29,8 @@ class Ability
         order.customer_id == user.customer.id
       end
       can :create, Order
-      can :add_to_cart, Order do |order|
-        order.customer_id == user.customer.id
-      end
+      can :add_to_cart, Item 
+      can :remove_from_cart, Item
       can :create, Address
       can :show, Address do |address|
         address.customer_id == user.customer.id

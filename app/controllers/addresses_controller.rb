@@ -37,6 +37,16 @@ class AddressesController < ApplicationController
     end
   end
 
+  def activate
+    @address.make_active
+    redirect_to @address, notice: "The address was activated"
+  end
+
+  def deactivate
+    @address.make_inactive
+    redirect_to @address, notice: "The address was deactivated"
+  end
+
 
   private
   def set_address

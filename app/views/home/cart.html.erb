@@ -1,0 +1,25 @@
+  <h4>Your Cart</h4>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th width="100">Item</th>
+        <th width="225">Quantity</th>
+        <th width="225">Subtotal</th>
+        <th width="100"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @order_items.each do |oi| %>
+        <tr>
+          <td><%= link_to oi.item.name, item_path(oi.item) %></td>
+          <td><%= oi.quantity %></td>
+          <td><%= oi.subtotal %></td>
+          <td>
+            <%= link_to(remove_from_cart_path(oi.item), class: 'button tiny radius') do %>
+                &nbsp;Remove from Cart&nbsp;
+            <% end %>
+            </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>

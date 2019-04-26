@@ -1,4 +1,4 @@
-<% unless previous_prices.empty? %>
+<% unless @previous_prices.empty? %>
   <div class="panel clearfix">
     <h3>Price History</h3>
     <table>
@@ -10,7 +10,7 @@
         </tr>
       </thead>
       <tbody>
-      <% previous_prices.each do |pp| %>
+      <% @previous_prices.each do |pp| %>
         <tr>
           <td><%= pp.start_date.strftime('%m/%d/%y') %></td>
         <td><% if pp.end_date.nil? %><i>Current Price<i><% else %><%= pp.end_date.strftime('%m/%d/%y') %><% end %></td>

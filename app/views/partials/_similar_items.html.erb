@@ -1,4 +1,4 @@
-<% unless similar_items.empty? %>
+<% unless @similar_items.empty? %>
   <div class="panel clearfix">
     <h3>Similar Items</h3>
     <table>
@@ -9,7 +9,7 @@
         </tr>
       </thead>
       <tbody>
-      <% similar_items.each do |item| %>
+      <% @similar_items.each do |item| %>
         <tr>
           <td><%= link_to item.name, item_path(item) %></td>
           <td><%= number_to_currency item.current_price %></td>

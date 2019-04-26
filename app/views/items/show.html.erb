@@ -1,15 +1,11 @@
-<div class="row">
-  <div class="small-7 columns">
-    <%= render partial: "item_details" %>
-  </div>
-  <div class="small-5 columns">
-    <% if logged_in? && current_user.role?(:admin) %>
-        <%= render partial: "partials/price_history", locals: {previous_prices: @previous_prices}  unless @previous_prices.empty?%>
-        <br><br>
-    <% end %>
-    <%= render partial: "partials/similar_items", locals: {similar_items: @similar_items}  unless @similar_items.empty?%>
-  </div>
-</div>
+<% if logged_in? && current_user.role?(:admin) %>
+  <%= render partial: "partials/structure1", locals: {primary: "item_details", 
+                                                    secondary: "partials/similar_items", sidebar: "partials/price_history" }%>
+<% else %>
+  <%= render partial: "partials/structure1", locals: {primary: "item_details", 
+                                                    secondary: nil, sidebar: "partials/similar_items" }%>
+
+<% end %>
 
 <!-- Add buttons to list all, edit project or destroy object -->
 <%= render partial: "partials/object_options", locals: {model_name: "item", object: @item}  %>
