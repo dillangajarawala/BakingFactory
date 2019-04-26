@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   include AppHelpers::Cart
+  include AppHelpers::Shipping
 
   before_action :set_order, only: [:show, :destroy]
   authorize_resource
@@ -18,16 +19,22 @@ class OrdersController < ApplicationController
 
   def new
     @order = Order.new
+    @order_subtotal = calculate_cart_items_cost
+    @shipping_costs = calculate_cart_shipping
   end
 
   def create
+    @order_subtotal = calculate_cart_items_cost
+    @shipping_costs = calculate_cart_shipping
     @order = Order.new(order_params)
     @order.date = Date.current
     @order.customer_id = current_user.customer.id
-    @order.credit_card_number = order.credit_card_number
-    @order.expiration_year = order.expiration_year
-    @order.expiration_month = order.expiration_month
+    @order.credit_card_number = @order.credit_card_number
+    @order.expiration_year = @order.expiration_year.to_i
+    @order.expiration_month = @order.expiration_month.to_i
+    @order.grand_total = @order_subtotal + @shipping_costs
     if @order.save
+      clear_cart
       @order.pay
       redirect_to @order, notice: "Thank you for ordering from the Baking Factory."
     else

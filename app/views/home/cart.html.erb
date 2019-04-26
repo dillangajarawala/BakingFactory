@@ -13,7 +13,7 @@
         <tr>
           <td><%= link_to oi.item.name, item_path(oi.item) %></td>
           <td><%= oi.quantity %></td>
-          <td><%= oi.subtotal %></td>
+          <td><%= number_to_currency oi.subtotal %></td>
           <td>
             <%= link_to(remove_from_cart_path(oi.item), class: 'button tiny radius') do %>
                 &nbsp;Remove from Cart&nbsp;
@@ -23,3 +23,7 @@
       <% end %>
     </tbody>
   </table>
+  <br>
+  <p>Order Subtotal: <%= number_to_currency @order_subtotal %><p><br><br>
+
+  <%= link_to 'Checkout', new_order_path, class: 'waves-effect waves-light btn'%>

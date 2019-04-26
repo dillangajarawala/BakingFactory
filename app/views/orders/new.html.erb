@@ -1,4 +1,8 @@
-
-<%= render partial: "partials/form_structure", locals: {object: @order, 
+<% if logged_in? && current_user.role?(:admin) %>
+    <%= render partial: "partials/form_structure", locals: {object: @order, 
                                                         type_of_form: "Place an Order with the Baking Factory",
                                                         fields: "fields"} %>
+<% elsif logged_in? && current_user.role?(:customer) %>
+    <%= render partial: "form" %>
+
+<% end %>

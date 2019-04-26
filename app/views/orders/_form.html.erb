@@ -1,18 +1,26 @@
-
-<%= simple_form_for @order, html: { class: 'form-horizontal' } do |f| %>
-  <fieldset>
-    <legend>Place an Order with the Baking Factory</legend>
-
-    <%= f.input :customer_id, collection: Customer.active.alphabetical, include_blank: true, label_html: {class: "active"} %>
-    <%= f.input :address_id, collection: get_address_options, include_blank: true, label_html: {class: "active"} %>
-    <%= f.input :grand_total, as: :string, label_html: {class: "active"} %>
-    <%= f.input :credit_card_number, as: :string, label_html: {class: "active"} %>
-    <%= f.input :expiration_month, as: :string, label_html: {class: "active"} %>
-    <%= f.input :expiration_year, as: :string, label_html: {class: "active"} %>
-
-    <div class="form-actions">
-      <%= f.submit nil, :class => 'button radius' %>
-      <%= link_to 'Cancel', orders_path, :class => 'button alert radius' %>
+<div class="row">
+  <div class="col s9">
+    <div class="card">    
+      <div class="card-content">
+        <span class="card-title">Place an Order with the Baking Factory</span>
+        <%= simple_form_for(@order) do |f| %>
+          <%= f.error_notification %>
+          <div class="row">
+            <div class="form-inputs">
+              <%= render partial: "fields", locals: { f: f } %>
+          </div>
+        </div>
+        </br></br>Order Subtotal: <%= number_to_currency @order_subtotal %>
+        </br></br>Shipping Costs: <%= number_to_currency @shipping_costs %>
+        </br></br>Grand Total: <%= number_to_currency (@order_subtotal+@shipping_costs)%>
+      </div>
     </div>
-  </fieldset>
-<% end %>
+      <div class="row">
+        <div class="form-actions col s9">
+          <%= f.button :submit %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<%= link_to 'Back', cart_path %>

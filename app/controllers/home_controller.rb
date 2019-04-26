@@ -16,6 +16,7 @@ class HomeController < ApplicationController
 
   def cart
     @order_items = get_list_of_items_in_cart
+    @order_subtotal = calculate_cart_items_cost
   end
 
 end
