@@ -1,5 +1,6 @@
 class Item < ApplicationRecord
   # get modules to help with some functionality
+  mount_uploader :picture, PictureUploader
   include AppHelpers::Validations
   include AppHelpers::Deletions
   include AppHelpers::Activeable::InstanceMethods
