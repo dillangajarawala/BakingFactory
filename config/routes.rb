@@ -17,8 +17,8 @@ Rails.application.routes.draw do
   get 'about' => 'home#about', as: :about
   get 'contact' => 'home#contact', as: :contact
   get 'privacy' => 'home#privacy', as: :privacy
-  get 'cart/:id/add' => 'items#add_to_cart', as: :add_to_cart
-  get 'cart/:id/remove' => 'items#remove_from_cart', as: :remove_from_cart
+  get 'cart/:id/add' => 'orders#add_to_cart', as: :add_to_cart
+  get 'cart/:id/remove' => 'orders#remove_from_cart', as: :remove_from_cart
   get 'addresses/:id/deactivate' => 'addresses#deactivate', as: :address_deactivate
   get 'addresses/:id/activate' => 'addresses#activate', as: :address_activate
   get 'customers/:id/deactivate' => 'customers#deactivate', as: :customer_deactivate

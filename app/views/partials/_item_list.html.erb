@@ -17,7 +17,7 @@
           <td><%= number_to_currency item.current_price %></td>
           <td><%= item.units_per_item %> <%= item.category == 'bread' ? 'loaf' : item.category %></td>
             <td>
-            <% if can? :add_to_cart, Item %>
+            <% if can? :add_to_cart, Order %>
               <%= link_to(add_to_cart_path(item), class: 'button tiny radius') do %>
                 &nbsp;Add to Cart&nbsp;
               <% end %>

@@ -22,15 +22,11 @@ class Ability
       can :update, User do |u|
         u.id == user.id
       end
-      can :index, Order do |order|
-        order.customer_id == user.customer.id
-      end
-      can :checkout, Order do |order|
-        order.customer_id == user.customer.id
-      end
+      can :index, Order
+      can :checkout, Order
       can :create, Order
-      can :add_to_cart, Item 
-      can :remove_from_cart, Item
+      can :add_to_cart, Order 
+      can :remove_from_cart, Order
       can :create, Address
       can :show, Address do |address|
         address.customer_id == user.customer.id

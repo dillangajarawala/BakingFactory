@@ -56,16 +56,6 @@
     end
   end
 
-  def add_to_cart
-    add_item_to_cart(@item.id.to_s)
-    redirect_to items_url, notice: "#{@item.name} has been added to your cart"
-  end
-
-  def remove_from_cart
-    remove_item_from_cart(@item.id.to_s)
-    redirect_to cart_path, notice: "#{@item.name} has been removed from your cart"
-  end
-
   def activate
     @item.make_active
     redirect_to @item, notice: "#{@item.name} was activated"
