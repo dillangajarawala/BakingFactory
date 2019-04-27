@@ -8,9 +8,11 @@ class OrdersController < ApplicationController
   
   def index
     if current_user.role?(:admin)
-      @all_orders = Order.chronological.paginate(:page => params[:page]).per_page(10)
+      @pending_orders = Order.not_shipped.chronological.paginate(:page => params[:page]).per_page(10)
+      @past_orders = Order.where(id: (Order.chronological - @pending_orders)).paginate(:page => params[:page]).per_page(10)
     elsif current_user.role?(:customer)
-      @all_orders = Order.chronological.for_customer(current_user.customer.id).paginate(:page => params[:page]).per_page(10)
+      @pending_orders = Order.for_customer(current_user.customer.id).not_shipped.chronological.paginate(:page => params[:page]).per_page(10)
+      @past_orders = Order.where(id: (Order.for_customer(current_user.customer.id).chronological - @pending_orders)).paginate(:page => params[:page]).per_page(10)
     end
   end
 

@@ -1,4 +1,7 @@
-  <h4><%= status %> Orders</h4>
+  <h4><%= state %> Orders</h4>
+  <% if orders.empty? %>
+  There are no <%= state.downcase %> orders at this time
+  <% else %>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -20,3 +23,4 @@
     </tbody>
   </table>
 <%= will_paginate orders, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>  
+<% end %>

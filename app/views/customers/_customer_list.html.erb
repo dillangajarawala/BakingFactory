@@ -1,8 +1,8 @@
-<h4><%= state.capitalize %> Customers at PATS</h4>
+<h4><%= state %> Customers</h4>
 
 <% if customers.empty? %>
    
-  There are no <%= state %> Customers at this time
+  There are no <%= state.downcase %> customers at this time
 
 <% else %>
   <table class="table table-striped">

@@ -1,0 +1,13 @@
+<div id="tabbed">
+  <tabs>
+
+    <tab name="pending orders" v-bind:selected="true">
+      <%= render :partial => "order_list", locals: {orders: @pending_orders, state: 'Pending'} %>
+    </tab>
+
+    <tab name="past orders">
+      <%= render :partial => "order_list", locals: {orders: @past_orders, state: 'Past'} %>
+    </tab>
+
+  </tabs>
+</div>

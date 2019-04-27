@@ -2,11 +2,11 @@
   <tabs>
 
     <tab name="active customers" v-bind:selected="true">
-      <%= render :partial => "customer_list", locals: {customers: @active_customers, state: 'active'} %>
+      <%= render :partial => "customer_list", locals: {customers: @active_customers, state: 'Active'} %>
     </tab>
 
-    <tab name="inactive customeers">
-      <%= render :partial => "customer_list", locals: {customers: @inactive_customers, state: 'inactive'} %>
+    <tab name="inactive customers">
+      <%= render :partial => "customer_list", locals: {customers: @inactive_customers, state: 'Inactive'} %>
     </tab>
 
   </tabs>
