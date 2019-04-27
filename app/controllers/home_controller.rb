@@ -3,6 +3,9 @@ class HomeController < ApplicationController
   # authorize_resource
 
   def home
+    if logged_in? && current_user.role?(:shipper)
+      @unshipped_orders = Order.not_shipped.paginate(:page => params[:page]).per_page(3)
+    end
   end
 
   def about

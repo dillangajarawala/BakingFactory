@@ -1,3 +1,7 @@
 
+<% if !logged_in? %>
 	<%= render :partial => 'general_home' %>
+<% elsif logged_in? && current_user.role?(:shipper) %>
+	<%= render partial: 'shipper_list' %>
+<% end %>
 

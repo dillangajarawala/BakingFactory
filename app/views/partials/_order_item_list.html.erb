@@ -15,14 +15,14 @@
       <tr>
         <td align="center"><%= oi.quantity %></td>
         <td><%= link_to oi.item.name, item_path(oi.item) %></td>
-        <td align="center"><%= number_to_currency oi.item.price_on_date(date) %></td>
-        <td align="right"><%= number_to_currency oi.subtotal(date) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+        <td align="center"><%= number_to_currency oi.item.price_on_date(oi.order.date) %></td>
+        <td align="right"><%= number_to_currency oi.subtotal(oi.order.date) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
         <% if controller.controller_name == 'home' %>
           <td>
             <% if oi.shipped_on.nil? %>
-              <%= link_to(image_tag('check_black.gif'), mark_shipped_path(oi.id), method: 'patch') %>
+              <%= link_to 'check_box_outline_blank', mark_shipped_path(oi), class: 'material-icons', method: 'patch' %>
             <% else %>
-              <%= link_to(image_tag('check_green.gif'), mark_unshipped_path(oi.id), method: 'patch') %>
+              <%= link_to 'check', mark_unshipped_path(oi), class: 'material-icons', method: 'patch' %>
             <% end %>
           </td>
         <% end %>
@@ -30,3 +30,4 @@
     <% end %>
   </tbody>
 </table>
+<br><br>

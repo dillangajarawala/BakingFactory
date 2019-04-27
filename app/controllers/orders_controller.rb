@@ -38,9 +38,9 @@ class OrdersController < ApplicationController
     @order.expiration_month = @order.expiration_month.to_i
     @order.grand_total = @order_subtotal + @shipping_costs
     if @order.save
-      clear_cart
       @order.pay
       save_each_item_in_cart(@order)
+      clear_cart
       redirect_to @order, notice: "Thank you for ordering from the Baking Factory."
     else
       render action: 'new'

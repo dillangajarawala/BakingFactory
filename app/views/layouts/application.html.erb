@@ -18,6 +18,8 @@
       <%= render :partial => "partials/nav" %>
     <% elsif logged_in? && current_user.role?(:customer)%>
       <%= render :partial => "partials/nav_customer" %>
+    <% elsif logged_in? && current_user.role?(:shipper) %>
+      <%= render :partial => "partials/nav_shipper" %>
     <% else %>
       <%= render :partial => "partials/nav_guest"%>  
     <% end %>

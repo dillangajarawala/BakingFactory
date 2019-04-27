@@ -28,6 +28,8 @@ Rails.application.routes.draw do
   get 'items/:id/deactivate' => 'items#deactivate', as: :item_deactivate
   get 'items/:id/activate' => 'items#activate', as: :item_activate
   get 'cart' => 'home#cart', as: :cart
+  patch 'order_items/:id/mark_unshipped' => 'order_items#mark_unshipped', as: :mark_unshipped
+  patch 'order_items/:id/mark_shipped' => 'order_items#mark_shipped', as: :mark_shipped
   
   # Set the root url
   root :to => 'home#home'
