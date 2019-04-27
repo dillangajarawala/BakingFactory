@@ -1,0 +1,17 @@
+<h4>Item List</h4>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th width="100">Item</th>
+        <th width="100">Quantity</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @order_items.each do |oi| %>
+        <tr>
+          <td><%= link_to oi.item.name, item_path(oi.item) %></td>
+          <td><%= oi.quantity %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
