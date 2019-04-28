@@ -1,0 +1,16 @@
+<div id="tabbed">
+  <tabs>
+
+    <tab name="breads" v-bind:selected="true">
+      <%= render :partial => "item_list", locals: {items: @breads, category: 'breads'} %>
+    </tab>
+
+    <tab name="muffins">
+      <%= render :partial => "item_list", locals: {items: @muffins, category: 'muffins'} %>
+    </tab>
+
+    <tab name="pastries">
+    <%= render :partial => "item_list", locals: {items: @pastries, category: "pastries"} %>
+
+  </tabs>
+</div>
