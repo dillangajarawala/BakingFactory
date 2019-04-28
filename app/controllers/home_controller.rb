@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   include AppHelpers::Cart
+  before_action :get_num_items
   # authorize_resource
 
   def home
@@ -52,6 +53,16 @@ class HomeController < ApplicationController
       @total_hits = @customers.size + @items.size
     elsif logged_in? && current_user.role?(:customer)
       @total_hits = @items.size
+    end
+  end
+
+  private
+  def get_num_items
+    if logged_in?
+      @num = 0
+      session[:cart].keys.each do |key|
+        @num += session[:cart][key]
+      end
     end
   end
 

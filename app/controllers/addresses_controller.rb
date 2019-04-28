@@ -1,5 +1,7 @@
 class AddressesController < ApplicationController
+  include AppHelpers::Cart
   before_action :set_address, only: [:show, :edit, :update, :destroy]
+  before_action :get_num_items
   authorize_resource
   
   def index
@@ -64,6 +66,13 @@ class AddressesController < ApplicationController
   private
   def set_address
     @address = Address.find(params[:id])
+  end
+
+  def get_num_items
+    @num = 0
+      session[:cart].keys.each do |key|
+        @num += session[:cart][key]
+      end
   end
 
   def address_params

@@ -4,6 +4,7 @@ class OrdersController < ApplicationController
 
   before_action :set_order, only: [:show, :destroy]
   before_action :set_item, only: [:add_to_cart, :remove_from_cart]
+  before_action :get_num_items
   authorize_resource
   
   def index
@@ -64,6 +65,13 @@ class OrdersController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
+  end
+
+  def get_num_items
+    @num = 0
+      session[:cart].keys.each do |key|
+        @num += session[:cart][key]
+      end
   end
 
   def order_params

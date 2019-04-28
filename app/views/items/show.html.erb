@@ -1,6 +1,7 @@
 <% if logged_in? && current_user.role?(:admin) %>
   <%= render partial: "partials/structure1", locals: {primary: "item_details", 
                                                     secondary: "partials/similar_items", sidebar: "partials/price_history" }%>
+
 <% else %>
   <%= render partial: "partials/structure1", locals: {primary: "item_details", 
                                                     secondary: nil, sidebar: "partials/similar_items" }%>

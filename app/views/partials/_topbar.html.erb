@@ -7,8 +7,8 @@
   </div>
   <div class="col s2">
     <% if logged_in? && current_user.role?(:customer) %>
-    <ul>
-    <li id="cart_logo"><%= link_to 'shopping_cart', cart_path, class: 'large material-icons yellow black-text' %><span class="badge yellow">4</span></li>
+    <ul class="right">
+    <li id="cart_logo"><%= link_to 'shopping_cart', cart_path, class: 'large material-icons yellow black-text' %><span class="badge yellow"><%= @num %></span></li>
     </ul>
     <% elsif logged_in? && current_user.role?(:admin) %>
       <%= render partial: "partials/search_without_title"%>
