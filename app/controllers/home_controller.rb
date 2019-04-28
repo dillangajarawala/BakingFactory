@@ -44,4 +44,15 @@ class HomeController < ApplicationController
     @order_subtotal = calculate_cart_items_cost
   end
 
+  def search
+    @query = params[:query]
+    @customers = Customer.search(@query)
+    @items = Item.search(@query)
+    if logged_in? && current_user.role?(:admin)
+      @total_hits = @customers.size + @items.size
+    elsif logged_in? && current_user.role?(:customer)
+      @total_hits = @items.size
+    end
+  end
+
 end

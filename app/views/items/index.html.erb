@@ -1,3 +1,8 @@
+<% if logged_in? && current_user.role?(:customer) %>
+<%= render partial: "partials/search_with_title", locals: {title: "Items"}%>
+<% else %>
+<h4 align="center">Items</h4>
+<% end %>
 <%= render partial: "partials/item_list", locals: {items: @breads,
                                                     item_type: 'breads'} %><br/>
 

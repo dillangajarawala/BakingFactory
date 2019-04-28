@@ -1,3 +1,4 @@
 <% if logged_in? && (current_user.role?(:baker) || current_user.role?(:admin)) %>
-	<%= render :partial => 'baker_list' %>
+	<%= render partial: "partials/structure1", locals: {primary: "baker_list", 
+                                                    secondary: nil, sidebar: nil }%>
 <% end %>
