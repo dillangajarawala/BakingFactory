@@ -1,3 +1,6 @@
+<% if @breads.empty? && @muffins.empty? && @pastries.empty? %>
+<p><em>No items need to be baked at this time</em><p>
+<% else %>
 <div id="tabbed">
   <tabs>
 
@@ -15,3 +18,4 @@
 
   </tabs>
 </div>
+<% end %>
