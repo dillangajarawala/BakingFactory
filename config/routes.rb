@@ -30,6 +30,8 @@ Rails.application.routes.draw do
   get 'cart' => 'home#cart', as: :cart
   patch 'order_items/:id/mark_unshipped' => 'order_items#mark_unshipped', as: :mark_unshipped
   patch 'order_items/:id/mark_shipped' => 'order_items#mark_shipped', as: :mark_shipped
+  get 'shipper' => 'home#shipper', as: :shipper_dashboard
+  get 'baker' => 'home#baker', as: :baker_dashboard
   
   # Set the root url
   root :to => 'home#home'

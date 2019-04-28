@@ -3,13 +3,16 @@ class HomeController < ApplicationController
   # authorize_resource
 
   def home
-    if logged_in? && current_user.role?(:shipper)
-      @unshipped_orders = Order.not_shipped.paginate(:page => params[:page]).per_page(3)
-    elsif logged_in? && current_user.role?(:baker)
-      @breads = baking_list("bread")
-      @muffins = baking_list("muffins")
-      @pastries = baking_list("pastries")
-    end
+  end
+
+  def shipper
+    @unshipped_orders = Order.not_shipped.paginate(:page => params[:page]).per_page(3)
+  end
+
+  def baker
+    @breads = baking_list("bread")
+    @muffins = baking_list("muffins")
+    @pastries = baking_list("pastries")
   end
 
   def baking_list(category)
