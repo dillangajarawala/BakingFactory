@@ -8,12 +8,14 @@
     <% end %>
     &nbsp;&nbsp;
   
-  <% if can? :update, eval("#{model_name.titleize}") %>
-    <%= link_to(eval("edit_#{model_name}_path(object)"), class: 'waves-effect waves-light btn') do %>
-        &nbsp;<%= "Edit #{opt}" %>
+  <% if controller.respond_to?(:update) %>
+    <% if can? :update, eval("#{model_name.titleize}") %>
+      <%= link_to(eval("edit_#{model_name}_path(object)"), class: 'waves-effect waves-light btn') do %>
+          &nbsp;<%= "Edit #{opt}" %>
+      <% end %>
     <% end %>
-  <% end %>
-  &nbsp;&nbsp;
+    &nbsp;&nbsp;
+    <% end %>
 
   <% if controller.respond_to?(:deactivate) || controller.respond_to?(:activate) %>
      <% if logged_in? && current_user.role?(:admin) %> 

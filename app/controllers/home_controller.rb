@@ -16,6 +16,28 @@ class HomeController < ApplicationController
     @pastries = baking_list("pastries")
   end
 
+  def customer
+    if logged_in? && current_user.role?(:customer)
+    @previous_orders = current_user.customer.orders.chronological.to_a
+    all_previous_items = get_previous_items
+    @previous_items = all_previous_items[0,4]
+    @recommended_item = (Item.all - all_previous_items).first
+    end
+  end
+
+  def get_previous_items
+    items = []
+    orders = Order.for_customer(current_user.customer.id).chronological
+    orders.each do |o|
+      o.items.each do |i|
+        if !items.include?(i)
+          items << i
+        end
+      end
+    end
+    items
+  end
+
   def baking_list(category)
     order_items = OrderItem.unshipped
     items = Hash.new

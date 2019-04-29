@@ -59,12 +59,12 @@
 
   def activate
     @item.make_active
-    redirect_to @item, notice: "#{@item.name} was activated"
+    redirect_to items_path, notice: "#{@item.name} was activated"
   end
 
   def deactivate
     @item.make_inactive
-    redirect_to @item, notice: "#{@item.name} was deactivated"
+    redirect_to items_path, notice: "#{@item.name} was deactivated"
   end
 
   private

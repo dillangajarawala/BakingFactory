@@ -1,12 +1,14 @@
 <% unless items.nil? || items.empty? %>
-  <h5><%= item_type.capitalize %></h5>
+  <% unless item_type.nil?%>
+    <h5><%= item_type.capitalize %></h5>
+  <% end %>
   <table class="table table-striped">
     <thead>
       <tr>
-        <th width="300">Name</th>
+        <th width="200">Name</th>
         <th width="100">Price</th>
         <th width="100">Units</th>
-        <th width="100">&nbsp;</th>
+        <th width="150">&nbsp;</th>
         <th width="100">&nbsp;</th>
       </tr>
     </thead>
@@ -18,17 +20,17 @@
           <td><%= item.units_per_item %> <%= item.category == 'bread' ? 'loaf' : item.category %></td>
             <td>
             <% if can? :add_to_cart, Order %>
-              <%= link_to(add_to_cart_path(item), class: 'button tiny radius') do %>
-                &nbsp;Add to Cart&nbsp;
+              <%= link_to(add_to_cart_path(item), class: 'waves-effect waves-light btn') do %>
+                &nbsp;Add to<i class="material-icons right green-text">shopping_cart</i>&nbsp;
               <% end %>
             <% end %>
             </td>
             <td>
           <% if logged_in? && current_user.role?(:admin) %> 
             <% if item.active? || item.active.nil? %>
-              <%= link_to "Deactivate", item_deactivate_path(item), class: 'button tiny radius warning' %>
+              <%= link_to "Deactivate", item_deactivate_path(item), class: 'waves-effect waves-light btn' %>
             <% else %> 
-              <%= link_to "Activate", item_activate_path(item), class: 'button tiny radius warning' %>
+              <%= link_to "Activate", item_activate_path(item), class: 'waves-effect waves-light btn' %>
             <% end %>
           <% end %>
         </td>

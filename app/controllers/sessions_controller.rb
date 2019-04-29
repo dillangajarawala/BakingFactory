@@ -15,6 +15,8 @@ class SessionsController < ApplicationController
           redirect_to shipper_dashboard_path, notice: "Logged in!"
         elsif user.role?(:baker)
           redirect_to baker_dashboard_path, notice: "Logged in!"
+        elsif user.role?(:customer)
+          redirect_to customer_dash_path, notice: "Logged in!"
         else
           redirect_to home_path, notice: "Logged in!"
         end

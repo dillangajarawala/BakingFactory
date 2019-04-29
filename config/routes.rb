@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   get 'contact' => 'home#contact', as: :contact
   get 'privacy' => 'home#privacy', as: :privacy
   get 'search' => 'home#search', as: :search
+  get 'customer_dash' => 'home#customer', as: :customer_dash
   get 'cart/:id/add' => 'orders#add_to_cart', as: :add_to_cart
   get 'cart/:id/remove' => 'orders#remove_from_cart', as: :remove_from_cart
   get 'addresses/:id/deactivate' => 'addresses#deactivate', as: :address_deactivate

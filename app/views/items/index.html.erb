@@ -21,6 +21,7 @@
         <th width="300">Name</th>
         <th width="100">Price</th>
         <th width="100">Units</th>
+        <th width="100">&nbsp;</th>
       </tr>
     </thead>
     <tbody>
@@ -29,6 +30,9 @@
           <td><%= link_to item.name, item_path(item) %></td>
           <td><%= number_to_currency item.current_price %></td>
           <td><%= item.units_per_item %> <%= item.category == 'bread' ? 'loaf' : item.category %>s</td>
+          <td>
+          <%= link_to "Activate", item_activate_path(item), class: 'button tiny radius warning' %>
+          </td>
         </tr>
       <% end %>
     </tbody>
