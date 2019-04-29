@@ -68,10 +68,12 @@ class OrdersController < ApplicationController
   end
 
   def get_num_items
-    @num = 0
+    if logged_in?
+      @num = 0
       session[:cart].keys.each do |key|
-        @num += session[:cart][key]
+          @num += session[:cart][key]
       end
+    end
   end
 
   def order_params

@@ -15,4 +15,6 @@
   </div>
 </div>
 
+<% if !(model_name == "order") || !current_user.role?(:customer) %>
 <%= render :partial => "partials/add_new_object", locals: {model_name: model_name} %>
+<% end %>

@@ -5,5 +5,7 @@
                 &nbsp;Add to<i class="material-icons right green-text">shopping_cart</i>&nbsp;
               <% end %>
 <br><br>
-<h4>Items You Have Ordered in the Past</h4>
-<%= render partial: "partials/item_list", locals: {items: @previous_items, item_type: nil}%>
+<% if !current_user.customer.orders.empty? %>
+  <h4>Items You Have Ordered in the Past</h4>
+  <%= render partial: "partials/item_list", locals: {items: @previous_items, item_type: nil}%>
+<% end %>

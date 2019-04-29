@@ -9,7 +9,7 @@ class Customer < ApplicationRecord
   has_many :orders
   has_many :addresses
   belongs_to :user
-
+  attr_accessor :username, :password, :password_confirmation
   # Allow user to be nested within customer
   accepts_nested_attributes_for :user, reject_if: ->(user) { user[:username].blank? }, allow_destroy: true
 
@@ -22,6 +22,7 @@ class Customer < ApplicationRecord
   validates_format_of :phone, with: /\A(\d{10}|\(?\d{3}\)?[-. ]\d{3}[-.]\d{4})\z/, message: "should be 10 digits (area code needed) and delimited with dashes only"
   validates_format_of :email, with: /\A[\w]([^@\s,;]+)@(([\w-]+\.)+(com|edu|org|net|gov|mil|biz|info))\z/i, message: "is not a valid format"
 
+  delegate :username, to: :user, allow_nil: true
 
   # Callbacks
   before_save :reformat_phone
