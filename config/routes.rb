@@ -34,6 +34,7 @@ Rails.application.routes.draw do
   patch 'order_items/:id/mark_shipped' => 'order_items#mark_shipped', as: :mark_shipped
   get 'shipper' => 'home#shipper', as: :shipper_dashboard
   get 'baker' => 'home#baker', as: :baker_dashboard
+  get 'admin' => 'home#admin', as: :admin_dashboard
   
   # Set the root url
   root :to => 'home#home'

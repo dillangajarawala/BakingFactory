@@ -20,7 +20,9 @@
             <div class="card-content">
               <span class="card-title"><%= section_2 %></span>
               <div class="form-inputs">
-                <%= render partial: "#{fields2}", locals: { f: f } %>
+                <%= f.simple_fields_for :user do |ff| %>
+                  <%= render partial: "#{fields2}", locals: { f: ff } %>
+                <% end %>
               </div>
             </div>
           </div>    

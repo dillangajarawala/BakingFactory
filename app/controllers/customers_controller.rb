@@ -16,6 +16,7 @@ class CustomersController < ApplicationController
 
   def new
     @customer = Customer.new
+    user = @customer.build_user
   end
 
   def edit
@@ -27,15 +28,9 @@ class CustomersController < ApplicationController
 
   def create
     @customer = Customer.new(customer_params)
-    @user = User.new(user_params)
-    @user.role = "customer"
-    @user.active = true
     @customer.active = true
-    if !@user.save
-      @customer.valid?
-      render action: 'new'
-    else
-      @customer.user_id = @user.id
+    @customer.user.role = "customer"
+    @customer.user.active = true
       if @customer.save
         if logged_in?
           redirect_to @customer, notice: "#{@customer.proper_name} was added to the system."
@@ -45,7 +40,6 @@ class CustomersController < ApplicationController
       else
         render action: 'new'
       end
-    end
   end
 
   def update
@@ -81,11 +75,7 @@ class CustomersController < ApplicationController
   end
 
   def customer_params
-    params.require(:customer).permit(:first_name, :last_name, :email, :phone, :active, :username, :password, :password_confirmation)
-  end
-
-  def user_params      
-    params.require(:customer).permit(:username, :password, :password_confirmation)
+    params.require(:customer).permit(:first_name, :last_name, :email, :phone, :active, user_attributes: [:username, :password, :password_confirmation])
   end
 
 end

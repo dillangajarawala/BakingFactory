@@ -4,7 +4,7 @@
   </div>
   <div class="col s9">
     <% if logged_in? && current_user.role?(:admin) %>
-      <h2><%= link_to "Baking Factory", home_path, class: "home_link" %></h2>
+      <h2><%= link_to "Baking Factory", admin_dashboard_path, class: "home_link" %></h2>
     <% elsif logged_in? && current_user.role?(:customer) %>
       <h2><%= link_to "Baking Factory", customer_dash_path, class: "home_link" %></h2>
     <% elsif logged_in? && current_user.role?(:baker) %>

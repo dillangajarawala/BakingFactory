@@ -1,0 +1,38 @@
+<h2 align="center">Insights</h2>
+<div class="row">
+    <div class="col s6">
+        <div id="tabbed">
+        <tabs>
+
+        <tab name="customers" v-bind:selected="true">
+            <br><br><br>
+            <h6>Number of Active Customers: <%= @num_active_customers %></h6>
+            <h6>Number of Inactive Customers: <%= @num_inactive_customers %></h6>
+        </tab>
+
+        <tab name="items">
+        <br><br><br>
+            <h6>Number of Active Items: <%= @num_active_items %></h6>
+            <h6>Number of Inactive Items: <%= @num_inactive_items %></h6>
+        </tab>
+
+    </tabs>
+    </div>
+    </div>
+    <div class="col s6">
+        <%= render partial: "sales_insights", locals: {title: 'Sales in the past week', 
+                                                       unit: "day", categories: @days,
+                                                        data: @days_totals} %><br>
+
+        <%= render partial: "sales_insights", locals: {title: 'Sales in the past month', 
+                                                       unit: "week", categories: @weeks,
+                                                        data: @weeks_totals} %><br>
+        
+
+        <%= render partial: "sales_insights", locals: {title: 'Sales in the past year', 
+                                                       unit: "month", categories: @months,
+                                                        data: @months_totals} %><br>
+    </div>
+</div>
+<div class="row">
+    <div>

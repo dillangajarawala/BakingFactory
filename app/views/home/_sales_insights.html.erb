@@ -1,0 +1,34 @@
+<script type="text/javascript">
+	
+	document.addEventListener('DOMContentLoaded', function () {
+    var myChart = Highcharts.chart({
+            chart: {
+                renderTo: '<%= unit %>-graph'
+            },				
+	        title: {
+	            text: '<%= raw title %>' ,
+	        },
+	        xAxis: {
+	        	title: {
+	                text: '<%= unit.capitalize.pluralize %>'
+	            },
+	            categories: <%= raw categories %>
+	        },
+	        yAxis: {
+	            title: {
+	                text: 'Sales (dollars)'
+	            },
+	        },
+	        tooltip: {
+	            valuePrefix: '$'
+	        },
+	        series: [{
+                name: "Sales",
+	            data: <%= data %>
+	        }]
+	        
+	    });
+	});
+	</script>
+	
+<div id="<%= unit %>-graph"></div>
