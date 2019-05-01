@@ -3,16 +3,16 @@
 <% else %>
 <h4 align="center">Items</h4>
 <% end %>
-<%= render partial: "partials/item_list", locals: {items: @breads,
-                                                    item_type: 'breads'} %><br/>
-
-<%= render partial: "partials/item_list", locals: {items: @muffins,
-                                                    item_type: 'muffins'} %><br/>
-
-<%= render partial: "partials/item_list", locals: {items: @pastries,
-                                                    item_type: 'pastries'} %><br/>
-
 <% if logged_in? && current_user.role?(:admin) %>
+  <%= render partial: "partials/item_list", locals: {items: @breads,
+                                                      item_type: 'breads'} %><br/>
+
+  <%= render partial: "partials/item_list", locals: {items: @muffins,
+                                                      item_type: 'muffins'} %><br/>
+
+  <%= render partial: "partials/item_list", locals: {items: @pastries,
+                                                      item_type: 'pastries'} %><br/>
+
   <% unless @inactive_items.nil? || @inactive_items.empty? %>
   <h5>Inactive Items</h5>
   <table class="table table-striped">
@@ -41,6 +41,15 @@
   <% if @inactive_items.nil? || @inactive_items.empty? %>
   <i>There are no inactive items at this time.</i><br><br>
   <% end %>
+<% else %>
+  <%= render partial: "item_grid", locals: {items: @breads,
+                                                      item_type: 'breads'} %><br/>
+
+  <%= render partial: "item_grid", locals: {items: @muffins,
+                                                      item_type: 'muffins'} %><br/>
+
+  <%= render partial: "item_grid", locals: {items: @pastries,
+                                                      item_type: 'pastries'} %><br/>
 <% end %>
 
 <% if can? :create, Item %>

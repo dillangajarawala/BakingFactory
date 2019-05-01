@@ -1,7 +1,9 @@
-<h3><%= @item.name %></h3><br><br>
+<h3><%= @item.name %></h3><br>
 
-<% unless @item.picture_url.nil? %>
-<p><%= image_tag @item.picture_url %><p>
+<% if @item.picture_url.nil? %>
+<p><%= image_tag 'nopic.jpeg', class: "item-image" %><p>
+<% else %>
+<%= image_tag @item.picture_url, class: "show-item-image" %>
 <% end %>
 
 <p>

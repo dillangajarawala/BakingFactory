@@ -1,0 +1,31 @@
+<% unless items.nil? || items.empty? %>
+  <% unless item_type.nil?%>
+    <h5 align="center"><%= item_type.capitalize %></h5>
+  <% end %>
+<div class="row" align="center">
+<% items.each do |item| %>
+    <div class="col s4">
+        <% if item.picture_url.nil? %>
+            <p><%= image_tag 'nopic.jpeg', class: "item-image" %><p>
+        <% else %>
+        <p><%= link_to item_path(item) do %>
+            <%= image_tag item.picture_url, class: "item-image" %>
+            <% end %><p>
+        <% end %>
+        <%= link_to item.name, item_path(item) %><br>
+        Price: <%= number_to_currency item.current_price %> for <%= item.units_per_item %> <%= item.category == 'bread' ? 'loaf' : item.category %><br><br>
+        <%= link_to(add_to_cart_path(item), class: 'waves-effect waves-light btn') do %>
+                &nbsp;Add to<i class="material-icons right green-text">shopping_cart</i>&nbsp;
+              <% end %><br><br>
+        <% if logged_in? && current_user.role?(:admin) %> 
+            <% if item.active? || item.active.nil? %>
+              <%= link_to "Deactivate", item_deactivate_path(item), class: 'waves-effect waves-light btn' %>
+            <% else %> 
+              <%= link_to "Activate", item_activate_path(item), class: 'waves-effect waves-light btn' %>
+            <% end %>
+          <% end %>
+        <br><br><br><br>
+    </div>
+<% end %>
+</div>
+<% end %>

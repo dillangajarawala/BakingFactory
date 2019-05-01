@@ -290,6 +290,12 @@ li.no_bullet {
   .alert-box.alert-close {
     opacity: 0; }
 
-    li.icon-blue {
-      color: yellow;
-    }
+  .item-image {
+    height: 200px;
+    width: 200px;
+  }
+
+  .show-item-image {
+    height: 300px;
+    width: 300px;
+  }

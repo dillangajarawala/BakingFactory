@@ -14,12 +14,15 @@
         <br><br><br>
             <h6>Number of Active Items: <%= @num_active_items %></h6>
             <h6>Number of Inactive Items: <%= @num_inactive_items %></h6>
+            <br>
+            <h6>Average Number of Distinct Items per Order: <%= @average_items_per_order %></h6>
         </tab>
 
     </tabs>
     </div>
     </div>
     <div class="col s6">
+        <h4 align="center">Sales</h4>
         <%= render partial: "sales_insights", locals: {title: 'Sales in the past week', 
                                                        unit: "day", categories: @days,
                                                         data: @days_totals} %><br>
