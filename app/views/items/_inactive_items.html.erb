@@ -1,0 +1,28 @@
+<% unless @inactive_items.nil? || @inactive_items.empty? %>
+  <h5>Inactive Items</h5>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th width="300">Name</th>
+        <th width="100">Price</th>
+        <th width="100">Units</th>
+        <th width="100">&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @inactive_items.each do |item| %>
+        <tr>
+          <td><%= link_to item.name, item_path(item) %></td>
+          <td><%= number_to_currency item.current_price %></td>
+          <td><%= item.units_per_item %> <%= item.category == 'bread' ? 'loaf' : item.category %>s</td>
+          <td>
+          <%= link_to "Activate", item_activate_path(item), class: 'button tiny radius warning' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <% end %>
+  <% if @inactive_items.nil? || @inactive_items.empty? %>
+  <i>There are no inactive items at this time.</i><br><br>
+  <% end %>
