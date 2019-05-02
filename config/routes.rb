@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :items
   resources :users
   resources :sessions
+  resources :item_prices
 
   # Semi-static page routes
   get 'users/new', to: 'users#new', as: :signup
@@ -35,6 +36,9 @@ Rails.application.routes.draw do
   get 'shipper' => 'home#shipper', as: :shipper_dashboard
   get 'baker' => 'home#baker', as: :baker_dashboard
   get 'admin' => 'home#admin', as: :admin_dashboard
+
+  # get 'item_price/new' => 'item_prices#new', as: :new_item_price
+  # post 'item_prices', to: 'item_prices#create', as: :item_prices
   
   # Set the root url
   root :to => 'home#home'

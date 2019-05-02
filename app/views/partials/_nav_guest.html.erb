@@ -4,7 +4,9 @@
       <li><%= link_to 'Items', items_path %></li>
     </ul>
     <ul class="right">
-      <li><%= link_to 'Login', login_path %></li>
+      <li><%= link_to(login_path) do %>
+                &nbsp;Login<i class="material-icons right yellow-text">fingerprint</i>&nbsp;
+              <% end %></li>
     </ul>
   </div>
 </nav>

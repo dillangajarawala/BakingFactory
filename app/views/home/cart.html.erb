@@ -1,4 +1,7 @@
   <h4>Your Cart</h4>
+  <% if @order_items.empty? || @order_items.nil? %>
+    <p><em>There are no items in your cart. Add one <%= link_to 'here!', items_path %><em><p>
+  <% else %>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -27,3 +30,4 @@
   <p>Order Subtotal: <%= number_to_currency @order_subtotal %><p><br><br>
 
   <%= link_to 'Checkout', new_order_path, class: 'waves-effect waves-light btn'%>
+  <% end %>

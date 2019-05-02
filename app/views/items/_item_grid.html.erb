@@ -14,9 +14,11 @@
         <% end %>
         <%= link_to item.name, item_path(item) %><br>
         Price: <%= number_to_currency item.current_price %> for <%= item.units_per_item %> <%= item.category == 'bread' ? 'loaf' : item.category %><br><br>
-        <%= link_to(add_to_cart_path(item), class: 'waves-effect waves-light btn') do %>
-                &nbsp;Add to<i class="material-icons right green-text">shopping_cart</i>&nbsp;
-              <% end %><br><br>
+        <% if can? :add_to_cart, Order%>
+          <%= link_to(add_to_cart_path(item), class: 'waves-effect waves-light btn') do %>
+                  &nbsp;Add to<i class="material-icons right green-text">shopping_cart</i>&nbsp;
+                <% end %><br><br>
+        <% end %>
         <% if logged_in? && current_user.role?(:admin) %> 
             <% if item.active? || item.active.nil? %>
               <%= link_to "Deactivate", item_deactivate_path(item), class: 'waves-effect waves-light btn' %>

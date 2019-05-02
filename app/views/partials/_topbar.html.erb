@@ -10,7 +10,7 @@
     <% elsif logged_in? && current_user.role?(:baker) %>
       <h2><%= link_to "Baking Factory", baker_path, class: "home_link" %></h2>
     <% elsif logged_in? && current_user.role?(:shipper) %>
-      <h2><%= link_to "Baking Factory", shipper_path, class: "home_link" %></h2>
+      <h2><%= link_to "Baking Factory", shipper_dashboard_path, class: "home_link" %></h2>
     <% else %>
       <h2><%= link_to "Baking Factory", home_path, class: "home_link" %></h2>
     <% end %>

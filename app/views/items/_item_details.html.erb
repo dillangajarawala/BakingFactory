@@ -29,5 +29,9 @@
 <% end %>
 
   <% if can? :add_to_cart, Order %>
-  <%= link_to "Add to Cart", add_to_cart_path(@item), class: 'waves-effect waves-light btn pulse' %>
+  <% if current_user.role?(:customer) %>
+    <%= link_to "Add to Cart", add_to_cart_path(@item), class: 'waves-effect waves-light btn pulse' %>
+  <% else %>
+    <%= link_to "Add to Cart", add_to_cart_path(@item), class: 'waves-effect waves-light btn' %>
+  <% end %>
 <% end %>

@@ -34,7 +34,6 @@ main {
 
 #nav {
   background-color: #8B5C10;
-  height: 50px;
 }
 
 #nav ul a {
@@ -244,6 +243,7 @@ li.no_bullet {
   font-size: 0.8125rem;
   font-weight: normal;
   margin-bottom: 1.25rem;
+  margin-top: 15px;
   padding: 0.875rem 1.5rem 0.875rem 0.875rem;
   position: relative;
   transition: opacity 300ms ease-out;
@@ -300,6 +300,6 @@ li.no_bullet {
     width: 300px;
   }
 
-  .dropdown-content {
+  ul.dropdown-content {
     background-color: #8B5C10;
   }
