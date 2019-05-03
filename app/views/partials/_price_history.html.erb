@@ -1,6 +1,6 @@
 <br><br>
 <% unless @previous_prices.empty? %>
-  <div class="card">
+  <div class="card hoverable">
     <div class="card-content">
       <span class="card-title">Price History</span>
     <table>
@@ -14,7 +14,7 @@
       <tbody>
       <% @previous_prices.each do |pp| %>
         <tr>
-          <td><%= pp.start_date.strftime('%m/%d/%y') %></td>
+          <td><%= pp.start_date.strftime('%B %e, %Y') %></td>
         <td><% if pp.end_date.nil? %><i>Current Price<i><% else %><%= pp.end_date.strftime('%m/%d/%y') %><% end %></td>
           <td><%= number_to_currency pp.price %></td>
         </tr>

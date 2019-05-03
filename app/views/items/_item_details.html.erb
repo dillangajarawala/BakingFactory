@@ -22,6 +22,10 @@
   <b>Weight</b>:<br> <%= @item.weight %> lbs
 </p>
 
+<p>
+  <b>Price</b>:<br> <%= number_to_currency @item.current_price %>
+</p>
+
 <% if logged_in? && current_user.role?(:admin) %>
     <p>
     <b>Active</b>:<br> <%= @item.active ? 'Yes' : 'No' %>

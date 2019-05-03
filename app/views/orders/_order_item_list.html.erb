@@ -1,34 +1,6 @@
-<h5>Items</h5>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th width="100">Quantity</th>
-      <th width="300">Item</th>
-      <th width="100">Unit Price</th>
-      <th width="100">Subtotal</th>
-      <% if controller.controller_name == 'home' %>
-        <th>&nbsp;</th>
-      <% end %>
-    </tr>
-  </thead>
-  <tbody>
-    <% @order_items.each do |oi| %>
-      <tr>
-        <td align="center"><%= oi.quantity %></td>
-        <td><%= link_to oi.item.name, item_path(oi.item) %></td>
-        <td align="center"><%= number_to_currency oi.item.price_on_date(oi.order.date) %></td>
-        <td align="right"><%= number_to_currency oi.subtotal(oi.order.date) %>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-        <% if controller.controller_name == 'home' %>
-          <td>
-            <% if oi.shipped_on.nil? %>
-              <%= link_to 'check_box_outline_blank', mark_shipped_path(oi), class: 'material-icons', method: 'patch' %>
-            <% else %>
-              <%= link_to 'check', mark_unshipped_path(oi), class: 'material-icons', method: 'patch' %>
-            <% end %>
-          </td>
-        <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<br><br>
+<ul class="collapsible">
+  <li>
+      <div class="collapsible-header" align="center"><h6 class="center-align">Items</h6></div>
+      <div class="collapsible-body"><span><%= render partial: 'partials/order_item_list', locals: {order_items: @order_items} %></span></div>
+  </li>
+</ul><br><br>

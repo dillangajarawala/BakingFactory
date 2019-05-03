@@ -1,6 +1,7 @@
 <% unless @previous_orders.empty? %>
-  <div class="panel clearfix">
-    <h3>Order History</h3>
+  <div class="card hoverable">
+    <div class="card-content">
+      <span class="card-title">Order History</span>
     <table>
       <thead>
         <tr>
@@ -11,10 +12,11 @@
       <tbody>
       <% @previous_orders.each do |order| %>
         <tr>
-          <td><%= link_to order.date.strftime('%m/%d/%y'), order_path(order) %></td>
+          <td><%= link_to order.date.strftime('%B %e, %Y'), order_path(order) %></td>
           <td><%= number_to_currency order.grand_total %></td>
         </tr>
       <% end %>
     </table>
+  </div>
   </div>
 <% end %>

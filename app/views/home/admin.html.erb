@@ -1,1 +1,3 @@
-<%= render partial: "admin_dash" %>
+<% if logged_in? && current_user.role?(:admin) %>
+    <%= render partial: "admin_dash" %>
+<% end %>

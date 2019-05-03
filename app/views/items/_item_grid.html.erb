@@ -19,14 +19,7 @@
                   &nbsp;Add to<i class="material-icons right green-text">shopping_cart</i>&nbsp;
                 <% end %><br><br>
         <% end %>
-        <% if logged_in? && current_user.role?(:admin) %> 
-            <% if item.active? || item.active.nil? %>
-              <%= link_to "Deactivate", item_deactivate_path(item), class: 'waves-effect waves-light btn' %>
-            <% else %> 
-              <%= link_to "Activate", item_activate_path(item), class: 'waves-effect waves-light btn' %>
-            <% end %>
-          <% end %>
-        <br><br><br><br>
+        <br><br><br>
     </div>
 <% end %>
 </div>

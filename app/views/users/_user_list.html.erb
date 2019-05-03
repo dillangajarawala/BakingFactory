@@ -17,16 +17,16 @@
           <td><%= user.role.capitalize %></td>
           <td><%= (user.active || user.active.nil?) ? 'Yes' : 'No'  %></td>
           <td>
-          <%= link_to(edit_user_path(user), class: 'button tiny radius warning') do %>
-            &nbsp;Edit&nbsp;
+          <%= link_to(edit_user_path(user), class: 'waves-effect waves-light btn-floating yellow accent-4') do %>
+            <i class="material-icons black-text">edit</i>
           <% end %>
         </td>
         <td>
           <% if logged_in? && current_user.role?(:admin) %> 
             <% if user.active? || user.active.nil? %>
-              <%= link_to "Deactivate", user_deactivate_path(user), class: 'button tiny radius warning' %>
+              <%= link_to "Deactivate", user_deactivate_path(user), class: 'waves-effect waves-light btn' %>
             <% else %> 
-              <%= link_to "Activate", user_activate_path(user), class: 'button tiny radius warning' %>
+              <%= link_to "Activate", user_activate_path(user), class: 'waves-effect waves-light btn' %>
             <% end %>
           <% end %>
         </td>

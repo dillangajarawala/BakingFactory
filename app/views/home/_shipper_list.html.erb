@@ -1,12 +1,16 @@
-<h3>Unshipped Orders</h3><br>
+<h3 align="center">Unshipped Orders</h3><br>
 <% if @unshipped_orders.empty? || @unshipped_orders.nil? %>
     <p><em>There are no unshipped orders at this time</em><p>
 <% else %>
+    <ul class="collapsible">
     <% @unshipped_orders.each do |uo| %>
-    <h6>Order going to <%= link_to(eval("address_path(uo.address)")) do %>
+    <li>
+      <div class="collapsible-header" align="center"><h6 class="center-align">Order going to <%= link_to(eval("address_path(uo.address)")) do %>
         <%= uo.address.street_1 %>, <% unless uo.address.street_2.blank? %> <%= uo.address.street_2 %><% end %> <%= uo.address.city %>, <%= uo.address.state %> <%= uo.address.zip %>
-    <% end %></h6>
-    <%= render partial: 'partials/order_item_list', locals: {order_items: uo.order_items} %>
+    <% end %></h6></div>
+      <div class="collapsible-body"><span><%= render partial: 'partials/order_item_list', locals: {order_items: uo.order_items} %></span></div>
+    </li>
     <% end %>
-    <%= will_paginate @unshipped_orders, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %>  
+    <%= will_paginate @unshipped_orders, previous_label: "Previous&nbsp;", next_label: "&nbsp;Next" %> 
+    </ul> 
 <% end %>

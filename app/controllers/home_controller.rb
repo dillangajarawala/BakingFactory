@@ -1,39 +1,63 @@
 class HomeController < ApplicationController
   include AppHelpers::Cart
   before_action :get_num_items
-  # authorize_resource
 
   def home
+    if logged_in? && current_user.role?(:admin)
+      redirect_to admin_dashboard_path
+    elsif logged_in? && current_user.role?(:baker)
+      redirect_to baker_dashboard_path
+    elsif logged_in? && current_user.role?(:shipper)
+      redirect_to shipper_dashboard_path
+    elsif logged_in? && current_user.role?(:customer)
+      redirect_to customer_dashboard_path
+    end
   end
 
   def shipper
-    @unshipped_orders = Order.not_shipped.paginate(:page => params[:page]).per_page(3)
+    if logged_in? && (current_user.role?(:shipper) || current_user.role?(:admin))
+      @unshipped_orders = Order.not_shipped.paginate(:page => params[:page]).per_page(3)
+    else
+      flash[:error] = "You are not allowed to view that page"
+      redirect_to home_path
+    end
   end
 
   def baker
-    @breads = baking_list("bread")
-    @muffins = baking_list("muffins")
-    @pastries = baking_list("pastries")
+    if logged_in? && (current_user.role?(:baker) || current_user.role?(:admin))
+      @breads = baking_list("bread")
+      @muffins = baking_list("muffins")
+      @pastries = baking_list("pastries")
+    else
+      flash[:error] = "You are not allowed to view that page"
+      redirect_to home_path
+    end  
   end
 
   def customer
-    if logged_in? && current_user.role?(:customer)
-    @previous_orders = current_user.customer.orders.chronological.to_a
-    all_previous_items = get_previous_items
-    @previous_items = all_previous_items[0,4]
-    @recommended_item = (Item.all - all_previous_items).first
-    @line = false
-    @data = [1,2,3]
+    if logged_in? && (current_user.role?(:customer) || current_user.role?(:admin))
+      @previous_orders = current_user.customer.orders.chronological.to_a
+      all_previous_items = get_previous_items
+      @previous_items = all_previous_items[0,4]
+      @recommended_item = (Item.all - all_previous_items).first
+    else
+      flash[:error] = "You are not allowed to view that page"
+      redirect_to home_path
     end
   end
 
   def admin
-    set_sales_information
-    @num_active_customers = Customer.active.size
-    @num_inactive_customers = Customer.all.size - @num_active_customers
-    @num_active_items = Item.active.size
-    @num_inactive_items = Item.all.size - @num_active_items
-    @average_items_per_order = Order.all.inject(0){|sum, o| sum += o.order_items.size}/Order.all.size
+    if logged_in? && current_user.role?(:admin)
+      set_sales_information
+      @num_active_customers = Customer.active.size
+      @num_inactive_customers = Customer.all.size - @num_active_customers
+      @num_active_items = Item.active.size
+      @num_inactive_items = Item.all.size - @num_active_items
+      @average_items_per_order = Order.all.inject(0){|sum, o| sum += o.order_items.size}/Order.all.size
+    else
+      flash[:error] = "You are not allowed to view that page"
+      redirect_to home_path
+    end
   end
 
   def set_sales_information

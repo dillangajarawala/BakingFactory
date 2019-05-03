@@ -4,18 +4,23 @@
 <% else %>
 <div id="tabbed">
   <tabs>
+    <% if !@breads.empty? %>
+      <tab name="breads" v-bind:selected="true">
+        <%= render :partial => "item_list", locals: {items: @breads, category: 'breads'} %>
+      </tab>
+    <% end %>
 
-    <tab name="breads" v-bind:selected="true">
-      <%= render :partial => "item_list", locals: {items: @breads, category: 'breads'} %>
-    </tab>
+    <% if !@muffins.empty? %>
+      <tab name="muffins">
+        <%= render :partial => "item_list", locals: {items: @muffins, category: 'muffins'} %>
+      </tab>
+    <% end %>
 
-    <tab name="muffins">
-      <%= render :partial => "item_list", locals: {items: @muffins, category: 'muffins'} %>
-    </tab>
-
-    <tab name="pastries">
-    <%= render :partial => "item_list", locals: {items: @pastries, category: "pastries"} %>
-    </tab>
+    <% if !@pastries.empty? %>
+      <tab name="pastries">
+      <%= render :partial => "item_list", locals: {items: @pastries, category: "pastries"} %>
+      </tab>
+    <% end %>
 
   </tabs>
 </div>

@@ -13,7 +13,7 @@ class OrdersController < ApplicationController
       @past_orders = Order.where(id: (Order.chronological - @pending_orders)).paginate(:page => params[:page]).per_page(10)
     elsif current_user.role?(:customer)
       @pending_orders = Order.for_customer(current_user.customer.id).not_shipped.chronological.paginate(:page => params[:page]).per_page(10)
-      @past_orders = Order.where(id: (Order.for_customer(current_user.customer.id).chronological - @pending_orders)).paginate(:page => params[:page]).per_page(10)
+      @past_orders = Order.where(id: (Order.for_customer(current_user.customer.id) - @pending_orders)).chronological.paginate(:page => params[:page]).per_page(10)
     end
   end
 
@@ -68,10 +68,10 @@ class OrdersController < ApplicationController
   end
 
   def get_num_items
-    if logged_in?
+    if logged_in? && (current_user.role?(:admin) || current_user.role?(:customer))
       @num = 0
       session[:cart].keys.each do |key|
-          @num += session[:cart][key]
+        @num += session[:cart][key]
       end
     end
   end

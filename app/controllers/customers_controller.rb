@@ -66,7 +66,7 @@ class CustomersController < ApplicationController
   end
 
   def get_num_items
-    if logged_in?
+    if logged_in? && (current_user.role?(:admin) || current_user.role?(:customer))
       @num = 0
       session[:cart].keys.each do |key|
         @num += session[:cart][key]
