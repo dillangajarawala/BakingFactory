@@ -1,6 +1,7 @@
 html {
   // Preloaded with four fonts; uncomment the one you prefer
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Oswald', serif;
+  font-weight: 300;
   // font-family: 'Bitter', serif;
   // font-family: 'Josefin Sans', sans-serif;
   // font-family: 'Varela Round', sans-serif;
@@ -21,24 +22,32 @@ main {
 }
 
 .home_link {
-  color: #ffd600;
+  color: #ddd;
 }
 
 /********** TOPBAR & NAV ********/
 #topbar {
-  background-color: #8B5C10;
+  background-color: #222;
   padding-top: 5px;
   margin-bottom: 0px;
-  color: #ffd600;
+  color: #ddd;
 }
 
 #nav {
-  background-color: #8B5C10;
+  background-color: #222;
+}
+
+header {
+  background-color: white;
 }
 
 #nav ul a {
-  color: #ffd600;
+  color: #ddd;
   font-size: 1.2rem;
+}
+
+#nav ul a:hover {
+  background-color: rgb(102, 102, 102);
 }
 
 /********** FLASH MSGS ********/
@@ -62,7 +71,7 @@ main {
 /********** FOOTER ********/
 
 #footer {
-  background-color: #8B5C10;
+  background-color: #222;
   padding-top: 10px;
   padding-bottom: 10px;
   margin-bottom: 0px;
@@ -71,7 +80,11 @@ main {
 }
 
 #footer a {
-  color: #ffd600;
+  color: #ddd;
+}
+
+#footer a:hover {
+  color: white;
 }
 
 /********** TABLES ********/
@@ -109,17 +122,17 @@ th.align_center {
 
 /********** BUTTONS ********/
 .btn {
-  background-color: #ffd600;
-  color: #000;
+  background-color: #222;
+  color: #ddd;
 }
 
 .btn:hover {
-  background-color: #ffff00;
-  color: #000;
+  background-color: rgba(34, 34, 34, 0.726);
+  color: #ddd;
 }
 
 a.btn-floating {
-  background-color: #ffd600;
+  background-color: #ddd;
   color: #000;
 }
 
@@ -149,7 +162,7 @@ a.btn-floating {
 
 /********** FORMS ********/
 .switch label input[type=checkbox]:checked + .lever {
-  background-color: #8B5C10;
+  background-color: #222;
 }
 
 .switch label input[type=checkbox]:checked + .lever::after {
@@ -157,12 +170,12 @@ a.btn-floating {
 }
 
 .picker__date-display {
-  background-color: #8B5C10;
-  color: #ffd600;
+  background-color: #222;
+  color: #ddd;
 }
 
 .picker__year-display {
-  color: #ffd600;
+  color: #ddd;
 }
 
 input[type=text].search {
@@ -173,26 +186,30 @@ input[type=text].search {
 .picker__day--selected, .picker__day--selected:hover, .picker--focused .picker__day--selected {
   border-radius: 50%;
   transform: scale(0.9);
-  background-color: #ffd600;
+  background-color: #ddd;
   color: #000;
 }
 
 .check_boxes.optional.filled-in {
-  background-color: #ffd600;
+  background-color: #ddd;
 }
 
 [type="checkbox"].filled-in:checked+label:after {
-  border: 2px solid #ffd600;
-  background-color: #ffd600;
+  border: 2px solid #ddd;
+  background-color: #ddd;
 }
 
 [type="radio"]:checked + label:after, [type="radio"].with-gap:checked + label:after {
-  border: 2px solid #ffd600;
-  background-color: #ffd600;
+  border: 2px solid #ddd;
+  background-color: #ddd;
 }
 
 #form-template {
   padding-left: 20px;
+}
+
+.input-field[type=text] {
+  color: black;
 }
 
 
@@ -226,11 +243,11 @@ li.no_bullet {
 
 /********** TABS ********/
 .tabs .tab a.active {
-  color: #8B5C10;
+  color: #222;
 }
 
 .tabs .tab a:hover {
-  color: #a7782b;
+  color: #000000;
 }
 
 .tabs .tab a {
@@ -241,7 +258,7 @@ li.no_bullet {
   position: absolute;
   bottom: 0;
   height: 2px;
-  background-color: #8B5C10;
+  background-color: #222;
   will-change: left, right;
 }
 
@@ -311,13 +328,13 @@ li.no_bullet {
   }
 
   #dropdown1 {
-    background-color: #8B5C10;
-    color: #ffd600;
+    background-color: #222;
+    color: #ddd;
   }
 
   #dropdown2 {
-    background-color: #8B5C10;
-    color: #ffd600;
+    background-color: #222;
+    color: #ddd;
   }
 
   .collapsible-header a:hover {
@@ -325,6 +342,34 @@ li.no_bullet {
   }
 
   table a:hover {
-    color: blue;
+    color: #222;
+  }
+
+  #dropdown1 li:hover {
+    background-color: rgb(255, 255, 255);
+  }
+
+  #dropdown2 li:hover {
+    background-color: rgb(255, 255, 255);
+  }
+
+  .form-inline {
+    color: #ddd;
+  }
+
+  .nav-link {
+    color: #ddd;
+  }
+
+  #admin-dash-logo {
+    color: #ddd;
+  }
+
+  #add_to_cart_icon {
+    color: #ddd;
+  }
+
+  #address-edit-icon {
+    color: #222;
   }
 

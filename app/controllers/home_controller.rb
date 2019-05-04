@@ -53,7 +53,6 @@ class HomeController < ApplicationController
       @num_inactive_customers = Customer.all.size - @num_active_customers
       @num_active_items = Item.active.size
       @num_inactive_items = Item.all.size - @num_active_items
-      @average_items_per_order = Order.all.inject(0){|sum, o| sum += o.order_items.size}/Order.all.size
     else
       flash[:error] = "You are not allowed to view that page"
       redirect_to home_path

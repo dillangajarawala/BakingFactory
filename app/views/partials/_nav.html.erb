@@ -2,25 +2,27 @@
   <div class="container">
     <ul class="left hide-on-med-and-down">
       <ul id="dropdown2" class="dropdown-content z-depth-5">
-        <li><%= link_to 'Users', users_path%></li>
-        <li><%= link_to 'Customers', customers_path %></li>
-        <li><%= link_to 'Addresses', addresses_path %></li>
-        <li><%= link_to 'Orders', orders_path %></li>
-        <li><%= link_to 'Items', items_path %></li>
+        <li><%= link_to 'Users', users_path, class: "nav-link" %></li>
+        <li><%= link_to 'Customers', customers_path, class: "nav-link" %></li>
+        <li><%= link_to 'Addresses', addresses_path, class: "nav-link" %></li>
+        <li><%= link_to 'Orders', orders_path, class: "nav-link" %></li>
+        <li><%= link_to 'Items', items_path, class: "nav-link" %></li>
       </ul>
       <ul id="dropdown1" class="dropdown-content z-depth-5">
-        <li><%= link_to 'Shipping List', shipper_dashboard_path %></li>
-        <li><%= link_to 'Baking List', baker_dashboard_path %></li>
+        <li><%= link_to 'Shipping List', shipper_dashboard_path, class: "nav-link" %></li>
+        <li><%= link_to 'Baking List', baker_dashboard_path, class: "nav-link" %></li>
       </ul>
       <li><a class="dropdown-button" data-beloworigin=true data-activates="dropdown2">Manage<i class="material-icons right">arrow_drop_down</i></a></li>
       <li><a class="dropdown-button" data-beloworigin=true data-activates="dropdown1">Lists<i class="material-icons right">arrow_drop_down</i></a></li>
       <li><%= link_to(admin_dashboard_path) do %>
-                &nbsp;My Insights<i class="material-icons right yellow-text">assignment</i>&nbsp;
+                &nbsp;My Insights<i id="admin-dash-logo" class="material-icons right">assignment</i>&nbsp;
               <% end %></li>
     </ul>
     <ul class="right">
-      <li><%= link_to 'My Cart', cart_path %></li>
-      <li><%= link_to 'Logout', logout_path %></li>
+      <li><%= link_to cart_path do %>
+            <i class="large material-icons left">shopping_cart</i>(<%= @num %>)
+          <% end %></li>
+      <li><%= link_to 'Logout', logout_path, class: "nav-link" %></li>
     </ul>
   </div>
 </nav>

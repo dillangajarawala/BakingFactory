@@ -4,10 +4,10 @@
 <% else %>
     <ul class="collapsible">
     <% @unshipped_orders.each do |uo| %>
-    <li>
+    <li class="active">
       <div class="collapsible-header" align="center"><h6 class="center-align">Order going to <%= link_to(eval("address_path(uo.address)")) do %>
         <%= uo.address.street_1 %>, <% unless uo.address.street_2.blank? %> <%= uo.address.street_2 %><% end %> <%= uo.address.city %>, <%= uo.address.state %> <%= uo.address.zip %>
-    <% end %></h6></div>
+    <% end %></h6><i class="material-icons" align="right">arrow_downward</i></div>
       <div class="collapsible-body"><span><%= render partial: 'partials/order_item_list', locals: {order_items: uo.order_items} %></span></div>
     </li>
     <% end %>

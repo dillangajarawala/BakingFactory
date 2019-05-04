@@ -1,9 +1,9 @@
   <h4><%= state %> Orders</h4>
   <% if orders.empty? %>
     <% if current_user.role?(:admin) %>
-      There are no <%= state.downcase %> orders at this time
+      There are no <%= state.downcase %> orders at this time.
     <% elsif current_user.role?(:customer) %>
-      You have no <%= state.downcase %> orders at this time
+      You have no <%= state.downcase %> orders at this time.
     <% end %>
   <% else %>
   <table class="table table-striped">

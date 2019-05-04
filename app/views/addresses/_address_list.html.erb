@@ -26,8 +26,8 @@
         </td>
         <td align="center"><%= address.is_billing ? "Yes" : "No" %></td>      
         <td>
-          <%= link_to(edit_address_path(address), class: 'btn-floating yellow accent-4') do %>
-            <i class="material-icons black-text">edit</i>
+          <%= link_to(edit_address_path(address), class: 'btn-floating') do %>
+            <i id="address-edit-icon" class="material-icons black-text">edit</i>
           <% end %>
         </td>
       </tr>

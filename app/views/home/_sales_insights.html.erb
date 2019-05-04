@@ -3,7 +3,10 @@
 	document.addEventListener('DOMContentLoaded', function () {
     var myChart = Highcharts.chart({
             chart: {
-                renderTo: '<%= unit %>-graph'
+				renderTo: '<%= unit %>-graph',
+				style: {
+					fontFamily: 'Oswald',
+				}
             },				
 	        title: {
 	            text: '<%= raw title %>' ,

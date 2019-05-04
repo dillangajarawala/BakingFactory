@@ -1,8 +1,8 @@
-<h3>Recommended Item</h3>
+<h3>Recommended For You</h3>
 <br><%= @recommended_item.name %>: <%= @recommended_item.description %>
 <br><br>Price: <%= number_to_currency @recommended_item.current_price %>
 <br><br><%= link_to(add_to_cart_path(@recommended_item), class: 'waves-effect waves-light btn') do %>
-                &nbsp;Add to<i class="material-icons right green-text">shopping_cart</i>&nbsp;
+                &nbsp;Add to<i class="material-icons right white-text">shopping_cart</i>&nbsp;
               <% end %>
 <br><br>
 <% if !current_user.customer.orders.empty? %>

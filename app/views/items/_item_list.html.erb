@@ -1,0 +1,28 @@
+<% unless items.nil? || items.empty? %>
+    <% unless item_type.nil? %>
+        <h5><%= item_type.capitalize %></h5>
+    <% end %>
+    <ul class="collection">
+        <% items.each do |item| %>
+            <li class="collection-item avatar">
+                <% if item.picture_url.nil? %>
+                    <%= image_tag 'nopic.jpeg', class: "item-image circle"%>
+                <% else %>
+                    <%= link_to item_path(item) do %>
+                        <%= image_tag item.picture_url, class: "circle"%>
+                    <% end %>
+                <% end %>
+                <span class="title"><%= link_to item.name, item_path(item) %></span>
+                <p>Price: <%= number_to_currency item.current_price %> <br>
+                    Units: <%= item.units_per_item %> <%= item.category == 'bread' ? 'loaf' : item.category %>
+                </p>
+                <% if item.active? || item.active.nil? %>
+                    <%= link_to "Deactivate", item_deactivate_path(item), class: 'secondary-content waves-effect waves-light btn' %>
+                <% else %> 
+                    <%= link_to "Activate", item_activate_path(item), class: 'secondary-content waves-effect waves-light btn' %>
+                <% end %>
+            </li>
+        <% end %>
+    </ul>
+<% end %>
+

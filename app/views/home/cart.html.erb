@@ -1,6 +1,6 @@
   <h4>Your Cart</h4>
   <% if @order_items.empty? || @order_items.nil? %>
-    <p><em>There are no items in your cart. Add one <%= link_to 'here!', items_path %><em><p>
+    <br><h6><em>There are no items in your cart. Add one <%= link_to 'here!', items_path %><em></h6>
   <% else %>
   <table class="table table-striped">
     <thead>

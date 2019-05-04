@@ -2,14 +2,14 @@
   <tabs>
 
     <tab name="active items" v-bind:selected="true">
-        <%= render partial: "partials/item_list", locals: {items: @breads,
-                                                      item_type: 'breads'} %><br/>
+        <%= render partial: "item_list", locals: {items: @breads,
+                                                      item_type: 'breads'} %>
 
-        <%= render partial: "partials/item_list", locals: {items: @muffins,
-                                                      item_type: 'muffins'} %><br/>
+        <%= render partial: "item_list", locals: {items: @muffins,
+                                                      item_type: 'muffins'} %>
 
-        <%= render partial: "partials/item_list", locals: {items: @pastries,
-                                                      item_type: 'pastries'} %><br/>
+        <%= render partial: "item_list", locals: {items: @pastries,
+                                                      item_type: 'pastries'} %>
     </tab>
 
     <tab name="inactive items">
