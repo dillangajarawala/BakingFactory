@@ -12,5 +12,6 @@
           <% end %></li>
       <li><%= link_to 'Logout', logout_path %></li>
     </ul>
+    <div align="right">Welcome, <%= current_user.customer.first_name.capitalize %></div>
   </div>
 </nav>

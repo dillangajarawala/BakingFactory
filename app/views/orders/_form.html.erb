@@ -1,8 +1,8 @@
 <div class="row">
-  <div class="col s9">
+  <div class="col s8">
     <div class="card">    
       <div class="card-content">
-        <span class="card-title">Place an Order with the Baking Factory</span>
+        <span class="card-title">Complete Your Order</span><br>
         <%= simple_form_for(@order) do |f| %>
           <%= f.error_notification %>
           <div class="row">
@@ -17,10 +17,41 @@
     </div>
       <div class="row">
         <div class="form-actions col s9">
-          <%= f.button :submit %>
+          <%= f.button :submit, label: "Place Order" %>
         </div>
       </div>
     <% end %>
+  </div>
+  <div class="col s4">
+    <div class="card hoverable">    
+      <div class="card-content">
+        <span class="card-title">Your Cart</span>
+          <table class="table table-striped">
+          <thead>
+            <tr>
+              <th width="400">Item</th>
+              <th width="20">Quantity</th>
+              <th width="225">Subtotal</th>
+              <th width="20"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @cart_items.each do |ci| %>
+              <tr>
+                <td><%= link_to ci.item.name, item_path(ci.item) %></td>
+                <td><%= ci.quantity %></td>
+                <td><%= number_to_currency ci.subtotal %></td>
+                <td>
+                  <%= link_to(remove_from_cart_path(ci.item), class: 'button tiny radius') do %>
+                      &nbsp;<i class="material-icons red-text">close</i>&nbsp;
+                  <% end %>
+                  </td>
+              </tr>
+            <% end %>
+          </tbody>
+          </table>
+      </div>
+    </div>
   </div>
 </div>
 <%= link_to 'Back', cart_path %>

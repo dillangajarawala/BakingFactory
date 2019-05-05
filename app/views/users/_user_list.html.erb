@@ -17,7 +17,7 @@
           <td><%= user.role.capitalize %></td>
           <td><%= (user.active || user.active.nil?) ? 'Yes' : 'No'  %></td>
           <td>
-          <%= link_to(edit_user_path(user), class: 'waves-effect waves-light btn-floating') do %>
+          <%= link_to(edit_user_path(user), class: 'waves-effect waves-light btn-floating hoverable z-depth 5') do %>
             <i class="material-icons black-text">edit</i>
           <% end %>
         </td>

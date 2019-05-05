@@ -10,7 +10,7 @@ class OrdersController < ApplicationController
   def index
     if current_user.role?(:admin)
       @pending_orders = Order.not_shipped.chronological.paginate(:page => params[:page]).per_page(10)
-      @past_orders = Order.where(id: (Order.chronological - @pending_orders)).paginate(:page => params[:page]).per_page(10)
+      @past_orders = Order.where(id: (Order.all - @pending_orders)).chronological.paginate(:page => params[:page]).per_page(10)
     elsif current_user.role?(:customer)
       @pending_orders = Order.for_customer(current_user.customer.id).not_shipped.chronological.paginate(:page => params[:page]).per_page(10)
       @past_orders = Order.where(id: (Order.for_customer(current_user.customer.id) - @pending_orders)).chronological.paginate(:page => params[:page]).per_page(10)
@@ -26,6 +26,7 @@ class OrdersController < ApplicationController
     @order = Order.new
     @order_subtotal = calculate_cart_items_cost
     @shipping_costs = calculate_cart_shipping
+    @cart_items = get_list_of_items_in_cart
   end
 
   def create

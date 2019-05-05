@@ -4,7 +4,7 @@
       <%= image_tag 'baking.jpg', class: "circle"%>
     <% end %>
   </div>
-  <div class="col s9">
+  <div class="col s3">
     <% if logged_in? && current_user.role?(:admin) %>
       <h2><%= link_to "Baking Factory", admin_dashboard_path, class: "home_link" %></h2>
     <% elsif logged_in? && current_user.role?(:customer) %>
@@ -17,9 +17,14 @@
       <h2><%= link_to "Baking Factory", home_path, class: "home_link" %></h2>
     <% end %>
   </div>
+  <div class="col s6 center">
+    <%= render partial: "partials/flash" %>
+  </div>
   <div class="col s2">
     <% if logged_in? && current_user.role?(:admin) %>
       <%= render partial: "partials/search_without_title"%>
+    <% elsif !logged_in? %>
+      <%= link_to "Create Account", new_customer_path, class: 'waves-effect waves-light btn', id: 'not-logged-in-create' %>
     <% end %>
   </div>
 </div>

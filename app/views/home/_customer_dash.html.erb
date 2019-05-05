@@ -1,4 +1,4 @@
-<h3>Recommended For You</h3>
+<h3>Here's our Recommendation, <%= current_user.customer.first_name.capitalize %></h3>
 <br><%= @recommended_item.name %>: <%= @recommended_item.description %>
 <br><br>Price: <%= number_to_currency @recommended_item.current_price %>
 <br><br><%= link_to(add_to_cart_path(@recommended_item), class: 'waves-effect waves-light btn') do %>

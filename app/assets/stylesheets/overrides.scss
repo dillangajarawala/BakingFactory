@@ -166,7 +166,7 @@ a.btn-floating {
 }
 
 .switch label input[type=checkbox]:checked + .lever::after {
-  background-color: rgb(85, 174, 212);
+  background-color: #ddd;
 }
 
 .picker__date-display {
@@ -212,6 +212,43 @@ input[type=text].search {
   color: black;
 }
 
+input:not([type]):focus:not([readonly]) + label,
+input[type=text]:not(.browser-default):focus:not([readonly]) + label,
+input[type=password]:not(.browser-default):focus:not([readonly]) + label,
+input[type=email]:not(.browser-default):focus:not([readonly]) + label,
+input[type=url]:not(.browser-default):focus:not([readonly]) + label,
+input[type=time]:not(.browser-default):focus:not([readonly]) + label,
+input[type=date]:not(.browser-default):focus:not([readonly]) + label,
+input[type=datetime]:not(.browser-default):focus:not([readonly]) + label,
+input[type=datetime-local]:not(.browser-default):focus:not([readonly]) + label,
+input[type=tel]:not(.browser-default):focus:not([readonly]) + label,
+input[type=number]:not(.browser-default):focus:not([readonly]) + label,
+input[type=search]:not(.browser-default):focus:not([readonly]) + label,
+textarea.materialize-textarea:focus:not([readonly]) + label {
+  color: #222;
+}
+
+input:not([type]):focus:not([readonly]),
+input[type=text]:not(.browser-default):focus:not([readonly]),
+input[type=password]:not(.browser-default):focus:not([readonly]),
+input[type=email]:not(.browser-default):focus:not([readonly]),
+input[type=url]:not(.browser-default):focus:not([readonly]),
+input[type=time]:not(.browser-default):focus:not([readonly]),
+input[type=date]:not(.browser-default):focus:not([readonly]),
+input[type=datetime]:not(.browser-default):focus:not([readonly]),
+input[type=datetime-local]:not(.browser-default):focus:not([readonly]),
+input[type=tel]:not(.browser-default):focus:not([readonly]),
+input[type=number]:not(.browser-default):focus:not([readonly]),
+input[type=search]:not(.browser-default):focus:not([readonly]),
+textarea.materialize-textarea:focus:not([readonly]) {
+  border-bottom: 1px solid #222;
+  box-shadow: 0 2px 0 0 #222;
+}
+
+.control-group label {
+  font-size: 1rem;
+  color: #222;
+}
 
 /********** MEDIA ********/
 .img_left {
@@ -267,8 +304,8 @@ li.no_bullet {
   border-style: solid;
   border-width: 1px;
   display: block;
-  font-size: 0.8125rem;
-  font-weight: normal;
+  font-size: 1rem;
+  font-weight: bold;
   margin-bottom: 1.25rem;
   margin-top: 15px;
   padding: 0.875rem 1.5rem 0.875rem 0.875rem;
@@ -415,3 +452,24 @@ li.no_bullet {
     color: #ddd;
   }
 
+  #search {
+    color: #ddd;
+  }
+
+  #not-logged-in-create {
+    background-color: #ddd;
+    color: #222;
+  }
+  
+  #not-logged-in-create:hover {
+    background-color: rgba(221, 221, 221, 0.507);
+    color: #222;
+  }
+
+  #login-card {
+    background-color: #ddd;
+  }
+
+  #day-graph {
+    font-size: 2rem;
+  }

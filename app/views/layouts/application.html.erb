@@ -16,6 +16,7 @@
   <body>
     <header>
     <!-- Partials for the topbar and navigation -->
+              <!-- Flash messages appear here -->
     <%= render :partial => "partials/topbar" %>
     <% if logged_in? && current_user.role?(:admin)%>
       <%= render :partial => "partials/nav" %>
@@ -34,8 +35,6 @@
     <div class="container">
       <div class="row">
         <div class="col s12" id="main_content">
-          <!-- Flash messages appear here -->
-          <%= render :partial => "partials/flash" %>
 
           <!-- MAIN CONTENT OF TEMPLATE GOES HERE -->
           <%= yield %>
