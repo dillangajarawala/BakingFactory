@@ -132,12 +132,12 @@ th.align_center {
 }
 
 a.btn-floating {
-  background-color: #ddd;
+  background-color: white;
   color: #000;
 }
 
 .btn-floating:hover {
-  background-color: #ffff00;
+  background-color: #ddd;
   color: #000;
 }
 
@@ -353,8 +353,17 @@ li.no_bullet {
     background-color: rgb(255, 255, 255);
   }
 
+  .dropdown-content {
+    background-color: white;
+  }
+
+  .dropdown-content li > a, .dropdown-content li > span {
+    color: #222;
+  }
+
+
   .form-inline {
-    color: #ddd;
+    color: #222;
   }
 
   .nav-link {
@@ -371,5 +380,38 @@ li.no_bullet {
 
   #address-edit-icon {
     color: #222;
+  }
+
+  #login-icon {
+    color: #ddd;
+  }
+
+  #home-home-page {
+    background-image: image_url('home.jpg');
+    height: 800px;
+    width: 100%;
+    max-height: 100%;
+    margin: 0;
+    padding: 0;
+    background-size:100% 100%;
+    background-repeat: no-repeat;
+  }
+
+  #items-index-page {
+    height: 400px;
+    background-image: image_url('baked-goods.jpg');
+    max-height: 100%;
+    margin: 0;
+    padding: 0;
+    background-size:100% 100%;
+    background-repeat: no-repeat;
+  }
+
+  #search2 {
+    color: #222;
+  }
+
+  #copy {
+    color: #ddd;
   }
 

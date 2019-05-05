@@ -29,8 +29,10 @@ class CustomersController < ApplicationController
   def create
     @customer = Customer.new(customer_params)
     @customer.active = true
-    @customer.user.role = "customer"
-    @customer.user.active = true
+    if !@customer.user.nil?
+      @customer.user.role = "customer"
+      @customer.user.active = true
+    end
       if @customer.save
         if logged_in?
           redirect_to @customer, notice: "#{@customer.proper_name} was added to the system."
@@ -63,15 +65,6 @@ class CustomersController < ApplicationController
   private
   def set_customer
     @customer = Customer.find(params[:id])
-  end
-
-  def get_num_items
-    if logged_in? && (current_user.role?(:admin) || current_user.role?(:customer))
-      @num = 0
-      session[:cart].keys.each do |key|
-        @num += session[:cart][key]
-      end
-    end
   end
 
   def customer_params

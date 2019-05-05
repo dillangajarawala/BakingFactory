@@ -1,4 +1,11 @@
-<%= render partial: "partials/index_structure", locals: {model_name: "address", 
+<% if logged_in? && current_user.role?(:admin) %>
+    <%= render partial: "partials/index_structure", locals: {model_name: "address", 
                                                          primary: "tabbed_addresses", 
                                                          secondary: nil, 
                                                          sidebar: nil} %>
+<% else %>
+    <%= render partial: "partials/index_structure", locals: {model_name: "address", 
+                                                         primary: "stateless_address_list", 
+                                                         secondary: nil, 
+                                                         sidebar: nil} %>
+<% end %>

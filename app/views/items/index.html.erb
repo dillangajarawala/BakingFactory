@@ -1,21 +1,29 @@
 <% if logged_in? && current_user.role?(:customer) %>
-<%= render partial: "partials/search_with_title", locals: {title: "Items"}%>
-<% else %>
-<h4 align="center">Items</h4>
+<div class="row">
+  <div id="item-search" class="col s2 right">
+    <%= render partial: "partials/search_without_title" %>
+  </div>
+</div>
 <% end %>
 <% if logged_in? && current_user.role?(:admin) %>
   <%= render partial: "tabbed_items" %>
 <% else %>
   <%= render partial: "item_grid", locals: {items: @breads,
-                                                      item_type: 'breads'} %><br/>
+                                                      item_type: 'breads'} %>
 
   <%= render partial: "item_grid", locals: {items: @muffins,
-                                                      item_type: 'muffins'} %><br/>
+                                                      item_type: 'muffins'} %>
 
   <%= render partial: "item_grid", locals: {items: @pastries,
-                                                      item_type: 'pastries'} %><br/>
+                                                      item_type: 'pastries'} %>
 <% end %>
 
 <% if can? :create, Item %>
   <%= render partial: "partials/add_new_object", locals: {model_name: 'item'} %>
+<% end %>
+
+<% if !logged_in? %>
+  <div  align="center">
+    <%= link_to "Not a customer? Create an account here!", new_customer_path, class: "waves-effect waves-lignt btn" %>
+  </div>
 <% end %>

@@ -72,14 +72,6 @@
     @item = Item.find(params[:id])
   end
 
-  def get_num_items
-    if logged_in? && (current_user.role?(:admin) || current_user.role?(:customer))
-      @num = 0
-      session[:cart].keys.each do |key|
-        @num += session[:cart][key]
-      end
-    end
-  end
 
   def item_params
     params.require(:item).permit(:name, :description, :picture, :category, :units_per_item, :weight, :active)

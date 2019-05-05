@@ -67,15 +67,6 @@ class OrdersController < ApplicationController
     @item = Item.find(params[:id])
   end
 
-  def get_num_items
-    if logged_in? && (current_user.role?(:admin) || current_user.role?(:customer))
-      @num = 0
-      session[:cart].keys.each do |key|
-        @num += session[:cart][key]
-      end
-    end
-  end
-
   def order_params
     if logged_in? && current_user.role?(:admin)
       params.require(:order).permit(:address_id, :customer_id, :grand_total, :credit_card_number, :expiration_year, :expiration_month)

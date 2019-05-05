@@ -2,6 +2,7 @@ class UsersController < ApplicationController
     before_action :current_user, only: [:show, :edit]
     before_action :set_user, only: [:show, :edit, :deactivate, :activate]
     before_action :check_login
+    before_action :get_num_items
     authorize_resource
 
     def index

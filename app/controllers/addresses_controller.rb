@@ -9,8 +9,7 @@ class AddressesController < ApplicationController
       @active_addresses = Address.active.by_customer.by_recipient.paginate(:page => params[:page]).per_page(10)
       @inactive_addresses = Address.inactive.by_customer.by_recipient.paginate(:page => params[:page]).per_page(10)
     else
-      @active_addresses = Address.active.by_customer.by_recipient.where(customer_id: current_user.customer.id).paginate(:page => params[:page]).per_page(10)
-      @inactive_addresses = Address.inactive.by_customer.by_recipient.where(customer_id: current_user.customer.id).paginate(:page => params[:page]).per_page(10)
+      @addresses = Address.active.by_customer.by_recipient.where(customer_id: current_user.customer.id).paginate(:page => params[:page]).per_page(10)
     end
   end
 
@@ -66,15 +65,6 @@ class AddressesController < ApplicationController
   private
   def set_address
     @address = Address.find(params[:id])
-  end
-
-  def get_num_items
-    if logged_in? && (current_user.role?(:admin) || current_user.role?(:customer))
-      @num = 0
-      session[:cart].keys.each do |key|
-        @num += session[:cart][key]
-      end
-    end
   end
 
   def address_params

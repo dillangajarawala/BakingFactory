@@ -53,6 +53,7 @@ class HomeController < ApplicationController
       @num_inactive_customers = Customer.all.size - @num_active_customers
       @num_active_items = Item.active.size
       @num_inactive_items = Item.all.size - @num_active_items
+      @item_name = get_most_ordered_item
     else
       flash[:error] = "You are not allowed to view that page"
       redirect_to home_path
@@ -107,15 +108,6 @@ class HomeController < ApplicationController
   end
 
   private
-  def get_num_items
-    if logged_in? && (current_user.role?(:admin) || current_user.role?(:customer))
-      @num = 0
-      session[:cart].keys.each do |key|
-        @num += session[:cart][key]
-      end
-    end
-  end
-
   def get_previous_items
     items = []
     orders = Order.for_customer(current_user.customer.id).chronological
@@ -144,4 +136,8 @@ class HomeController < ApplicationController
     items
   end
 
+  def get_most_ordered_item
+    arr = Item.all.map{ |i| [i.orders.size, i.name] }
+    arr.max[1]
+  end
 end

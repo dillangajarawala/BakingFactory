@@ -10,8 +10,14 @@
   
   <% if controller.respond_to?(:update) %>
     <% if can? :update, eval("#{model_name.titleize}") %>
-      <%= link_to(eval("edit_#{model_name}_path(object)"), class: 'waves-effect waves-light btn') do %>
-          &nbsp;<%= "Edit #{opt}" %>
+      <% if current_user.role?(:customer) && controller.controller_name == "customers" %>
+        <%= link_to(eval("edit_#{model_name}_path(object)"), class: 'waves-effect waves-light btn') do %>
+          &nbsp;<%= "Edit My Info" %>
+        <% end %>
+      <% else %>
+        <%= link_to(eval("edit_#{model_name}_path(object)"), class: 'waves-effect waves-light btn') do %>
+            &nbsp;<%= "Edit #{opt}" %>
+        <% end %>
       <% end %>
     <% end %>
     &nbsp;&nbsp;
