@@ -20,7 +20,13 @@
         <% if controller.controller_name == 'home' %>
           <td>
             <% if oi.shipped_on.nil? %>
-              <%= link_to 'check_box_outline_blank', mark_shipped_path(oi), class: 'material-icons', method: 'patch' %>
+              <% if oi.order.order_items.unshipped.size == 1 %>
+                <%= link_to(eval("mark_shipped_path(oi)"), method: 'patch', data: {confirm: "Are you sure you want to totally ship this order? You cannot go back from this."}, class: 'material-icons') do %>
+          &nbsp;check_box_outline_blank
+                <% end %>
+              <% else %>
+                <%= link_to 'check_box_outline_blank', mark_shipped_path(oi), class: 'material-icons', method: 'patch' %>
+              <% end %>
             <% else %>
               <%= link_to 'check', mark_unshipped_path(oi), class: 'material-icons', method: 'patch' %>
             <% end %>

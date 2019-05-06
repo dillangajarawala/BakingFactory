@@ -223,7 +223,6 @@ input[type=datetime]:not(.browser-default):focus:not([readonly]) + label,
 input[type=datetime-local]:not(.browser-default):focus:not([readonly]) + label,
 input[type=tel]:not(.browser-default):focus:not([readonly]) + label,
 input[type=number]:not(.browser-default):focus:not([readonly]) + label,
-input[type=search]:not(.browser-default):focus:not([readonly]) + label,
 textarea.materialize-textarea:focus:not([readonly]) + label {
   color: #222;
 }
@@ -239,10 +238,13 @@ input[type=datetime]:not(.browser-default):focus:not([readonly]),
 input[type=datetime-local]:not(.browser-default):focus:not([readonly]),
 input[type=tel]:not(.browser-default):focus:not([readonly]),
 input[type=number]:not(.browser-default):focus:not([readonly]),
-input[type=search]:not(.browser-default):focus:not([readonly]),
 textarea.materialize-textarea:focus:not([readonly]) {
   border-bottom: 1px solid #222;
   box-shadow: 0 2px 0 0 #222;
+}
+
+#search input[type=text]:not(.browser-default):focus:not([readonly]) {
+  border-bottom: 1px solid #ddd;
 }
 
 .control-group label {
@@ -382,6 +384,14 @@ li.no_bullet {
     color: #222;
   }
 
+  .item-link {
+    color: blue;
+  }
+
+  .item-link:hover {
+    color: #222;
+  }
+
   #dropdown1 li:hover {
     background-color: rgb(255, 255, 255);
   }
@@ -435,7 +445,7 @@ li.no_bullet {
   }
 
   #items-index-page {
-    height: 400px;
+    height: 450px;
     background-image: image_url('baked-goods.jpg');
     max-height: 100%;
     margin: 0;
@@ -476,4 +486,12 @@ li.no_bullet {
 
   .welcome-text {
     color: #ddd;
+  }
+
+  #add-new-price {
+    color: #222;
+  }
+
+  #add-new-price:hover {
+    color: rgba(34, 34, 34, 0.555);
   }

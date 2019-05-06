@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
     before_action :current_user, only: [:show, :edit]
-    before_action :set_user, only: [:show, :edit, :deactivate, :activate]
+    before_action :set_user, only: [:show, :edit, :update, :deactivate, :activate]
     before_action :check_login
     before_action :get_num_items
     authorize_resource
@@ -19,8 +19,7 @@ class UsersController < ApplicationController
     def create
         @user = User.new(user_params)
         if @user.save
-        session[:user_id] = @user.id
-          redirect_to(@user, :notice => 'User was successfully created.')
+          redirect_to users_url, :notice => 'User was successfully created.'
         else
           render :action => "new"
         end
@@ -30,7 +29,7 @@ class UsersController < ApplicationController
       # PATCH/PUT /genres/1.json
     def update
       if @user.update_attributes(user_params)
-        redirect_to(@user, :notice => 'User was successfully updated.')
+        redirect_to users_url, :notice => 'User was successfully updated.'
       else
         render :action => "edit"
       end

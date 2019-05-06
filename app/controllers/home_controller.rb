@@ -3,15 +3,6 @@ class HomeController < ApplicationController
   before_action :get_num_items
 
   def home
-    if logged_in? && current_user.role?(:admin)
-      redirect_to admin_dashboard_path
-    elsif logged_in? && current_user.role?(:baker)
-      redirect_to baker_dashboard_path
-    elsif logged_in? && current_user.role?(:shipper)
-      redirect_to shipper_dashboard_path
-    elsif logged_in? && current_user.role?(:customer)
-      redirect_to customer_dashboard_path
-    end
   end
 
   def shipper

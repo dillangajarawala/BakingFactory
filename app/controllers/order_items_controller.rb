@@ -4,13 +4,17 @@ class OrderItemsController < ApplicationController
     def mark_unshipped
         @order_item.shipped_on = nil
         @order_item.save!
-        redirect_to shipper_dashboard_path, notice: "Item has been marked as unshipped"
+        redirect_to shipper_dashboard_path, notice: "The item has been marked as unshipped"
     end
 
     def mark_shipped
         @order_item.shipped_on = Date.today
         @order_item.save!
-        redirect_to shipper_dashboard_path, notice: "Item has been marked as shipped"
+        if @order_item.order.order_items.unshipped > 0
+            redirect_to shipper_dashboard_path, notice: "The item has been marked as shipped"
+        else
+            redirect_to shipper_dashboard_path, notice: "The order is now fully shipped!"
+        end
     end
 
     private

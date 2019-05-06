@@ -2,6 +2,7 @@
   <div class="container">
     <ul class="left hide-on-med-and-down">
       <li><%= link_to 'My Account', customer_path(current_user.customer) %></li>
+      <li><%= link_to 'My Dashboard', customer_dashboard_path %></li>
       <li><%= link_to 'My Addresses', addresses_path %></li>
       <li><%= link_to 'My Orders', orders_path %></li>
       <li><%= link_to 'Items', items_path %></li>

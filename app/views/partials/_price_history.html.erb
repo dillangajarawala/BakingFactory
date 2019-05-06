@@ -23,7 +23,7 @@
        </div>
     <% if can? :new, ItemPrice %>
       <div class="card-action">
-        <%= link_to "Add a new price", new_item_price_path(item_id: @item.id) %>
+        <%= link_to "Add a new price", new_item_price_path(item_id: @item.id), id: "add-new-price" %>
       </div>
     <% end %>
   </div>

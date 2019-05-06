@@ -10,7 +10,9 @@
 			and start ordering.  (Still reading? What are you waiting for?)
 		</p>
 		<br>
-		<div align="center"><%= link_to "Create Account", new_customer_path, class: 'waves-effect waves-light btn' %></div>
+		<% if !logged_in? %>
+			<div align="center"><%= link_to "Create Account", new_customer_path, class: 'waves-effect waves-light btn' %></div>
+		<% end %>
 	</div>
 	<div class="small-1 columns">
 		&nbsp;
