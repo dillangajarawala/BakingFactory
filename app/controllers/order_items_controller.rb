@@ -10,7 +10,7 @@ class OrderItemsController < ApplicationController
     def mark_shipped
         @order_item.shipped_on = Date.today
         @order_item.save!
-        if @order_item.order.order_items.unshipped > 0
+        if @order_item.order.order_items.unshipped.size > 0
             redirect_to shipper_dashboard_path, notice: "The item has been marked as shipped"
         else
             redirect_to shipper_dashboard_path, notice: "The order is now fully shipped!"

@@ -11,7 +11,7 @@
     <%= render partial: "partials/flash" %>
   </div>
   <div class="col s2">
-    <% if logged_in? && current_user.role?(:admin) %>
+    <% if logged_in? && (current_user.role?(:admin) || current_user.role?(:customer))  %>
       <%= render partial: "partials/search_without_title"%>
     <% elsif !logged_in? %>
       <%= link_to "Create Account", new_customer_path, class: 'waves-effect waves-light btn', id: 'not-logged-in-create' %>
