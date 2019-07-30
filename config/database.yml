@@ -9,6 +9,7 @@ default: &default
   pool: 5 # Specifies the maximum number of connections that can be opened
   timeout: 5000 # in milliseconds. This is how long the app will wait for a database response
   encoding: unicode
+  host: localhost
 
 development:
   <<: *default # inherits from default
