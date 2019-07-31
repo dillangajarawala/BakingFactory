@@ -6,7 +6,7 @@
 <% items.each do |item| %>
     <div class="col s4">
         <% if item.picture_url.nil? %>
-            <p><%= image_tag 'nopic.jpeg', class: "item-image" %><p>
+            <p><%= image_tag 'nopic.jpg', class: "item-image" %><p>
         <% else %>
         <p><%= link_to item_path(item) do %>
             <%= image_tag item.picture_url, class: "item-image" %>
