@@ -6,8 +6,7 @@
 #
 default: &default
   adapter: postgresql
-  pool: 5 # Specifies the maximum number of connections that can be opened
-  timeout: 5000 # in milliseconds. This is how long the app will wait for a database response
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   encoding: unicode
   host: localhost
 
