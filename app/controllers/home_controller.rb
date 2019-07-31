@@ -109,6 +109,9 @@ class HomeController < ApplicationController
         end
       end
     end
+    if Item.all.size <= items.size
+      items = []
+    end
     items
   end
 
