@@ -9,7 +9,8 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.6', '>= 5.1.6.1'
 # Use sqlite3 as the database for Active Record
-gem 'sqlite3'
+# gem 'sqlite3'
+gem 'pg', '0.21.0'
 # Use Puma as the app server
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
@@ -49,6 +50,8 @@ gem 'carrierwave', '1.2.2'
 gem 'will_paginate', '3.1.6'
 gem 'vuejs-rails', '2.5.13'
 gem 'best_in_place', '~> 3.0.1'
+gem 'populator', '1.0.0'
+gem 'factory_bot_rails', '4.8.2'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -61,8 +64,6 @@ group :development, :test do
   gem 'meta_request', '0.5.0'
   gem 'hirb', '0.7.3'
   gem 'faker', '1.8.7'
-  gem 'populator', '1.0.0'
-  gem 'factory_bot_rails', '4.8.2'
   gem 'simplecov', '0.15.1'
   gem 'shoulda', '3.5.0'
   gem 'shoulda-matchers', '2.8.0'
