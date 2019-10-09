@@ -13,3 +13,6 @@ To set this up, clone this repository, run the `bundle install` command to ensur
 This app is deployed on Heroku at https://mighty-taiga-80067.herokuapp.com. Please allow up to 30 seconds for it to wake up in the case that it is hibernating
 
 I hope you enjoy my project!
+
+P.S. If you would like the admin username and password to fully explore the project, please contact me at
+<dillan.gajarawala@gmail.com>
